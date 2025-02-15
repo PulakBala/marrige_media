@@ -1,0 +1,8 @@
+.home_image{
+    background: url('https://img2.shaadi.com/assests/2024/images/shaadi-north-desktop.webp') no-repeat center center/cover;
+    height: 80vh;
+}
+.home_banner {
+    position: relative;
+    z-index: 2;
+}
