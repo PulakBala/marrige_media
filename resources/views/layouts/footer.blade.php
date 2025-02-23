@@ -1,5 +1,5 @@
 
-<footer class="bg-dark text-white text-center p-3 mt-5">
+<footer class="bg-dark text-white text-center p-3  m-0" style="margin-bottom: 0;">
     &copy; 2024 Matrimony | All Rights Reserved
 </footer>
 
