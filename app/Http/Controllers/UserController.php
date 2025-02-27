@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth; 
+use Illuminate\Support\Facades\Auth;  
 
 class UserController extends Controller
 {
@@ -42,7 +42,7 @@ class UserController extends Controller
                 'mobile_number' => $mobile_number,
                 'role' => 'user' // Default: new users will be 'user'
             ]);
-        
+
             Auth::login($user);
            // Redirect to the dashboard after successful registration
         return redirect()->route('dashboard')->with('success', 'User registered successfully!');

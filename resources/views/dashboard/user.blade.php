@@ -3,6 +3,8 @@
 @section('title', 'User Dashboard')
 
 @section('content')
-    <h2>User Dashboard</h2>
+    <div class="container">
+        <h2>User Dashboard</h2>
     <p>Welcome, {{ auth()->user()->name }}!</p>
+    </div>
 @endsection

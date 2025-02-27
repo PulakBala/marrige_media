@@ -12,16 +12,17 @@
 
     @include('layouts.header')
 
-    <div class="d-flex">
+    <div class="d-flex wrapper @auth has-sidebar @endauth">
         @auth
-
-        @include('layouts.sidebar')
+            @include('layouts.sidebar')
         @endauth
-        <main class="flex-grow-1">
+        <main class="flex-grow-1 main-content">
             @yield('content')
         </main>
     </div>
 
     @include('layouts.footer')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/js/sidebar.js') }}"></script>
 </body>
 </html>

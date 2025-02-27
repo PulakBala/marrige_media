@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" href="#">Matrimony</a>
         <div>
@@ -8,7 +8,9 @@
                     @csrf
                     <button type="submit" class="btn btn-outline-light">Logout</button>
                 </form>
-
+                <button class="navbar-toggler d-lg-none" type="button" id="sidebarToggle">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             @else
 
                 {{-- <a href="{{ route('register') }}" class="btn btn-outline-light">Sign Up</a> --}}

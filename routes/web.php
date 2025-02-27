@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
+
 
 Route::get('/', function () {
     return view('home');
@@ -28,4 +30,15 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
+// my profile route
+
+Route::prefix('profile')->group(function () {
+    //Dashboard
+    Route::get('/dashboard', [ProfileController::class, 'dashboard'])->name('profile.dashboard');
+    // Route::get('/personal-info', [ProfileController::class, 'personalInfo'])->name('profile.personal-info');
+    // Route::get('/security', [ProfileController::class, 'security'])->name('profile.security');
+    // Route::get('/preferences', [ProfileController::class, 'preferences'])->name('profile.preferences');
+    // আরও রাউট যোগ করতে পারেন
 });

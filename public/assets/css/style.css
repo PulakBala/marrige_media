@@ -6,3 +6,98 @@
     position: relative;
     z-index: 2;
 }
+
+body{
+    padding-top: 56px; /*navabar height */
+    min-height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    flex: 1 0 auto; /* This will make the wrapper take all available space */
+    min-height: 0; /* This allows the wrapper to shrink if needed */
+}
+
+
+.main-content {
+    padding: 20px;
+    width: 100%;
+    min-height: calc(100vh - 116px); /* viewport height - (navbar + footer) */
+}
+
+/* Add this new class for when sidebar is present */
+.has-sidebar .main-content {
+    margin-left: 250px; /* Sidebar width */
+}
+
+/* sidebar css  */
+/* Mobile responsive styles */
+@media (max-width: 991.98px) {
+    #sidebar {
+        position: fixed;
+        left: -250px;
+        z-index: 1000;
+        transition: 0.3s;
+    }
+
+    #sidebar.show-sidebar {
+        left: 0;
+    }
+
+    .main-content {
+        margin-left: 0;
+        min-height: calc(100vh - 116px);
+    }
+     /* Remove margin for mobile even with sidebar */
+     .has-sidebar .main-content {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 992px) {
+    .d-lg-none {
+        display: none !important;
+    }
+}
+
+/* end sidebar css  */
+.responsive-card {
+    background-color: #008069 !important;
+    height: auto !important;
+}
+
+/* Extra small devices (phones) */
+@media (max-width: 576px) {
+    .responsive-card {
+        min-height: 50px !important;
+    }
+    .responsive-card img {
+        max-width: 50px !important;
+    }
+    .responsive-card .fs-5 {
+        font-size: 0.9rem !important;
+    }
+}
+
+
+
+/* Small devices (tablets) */
+@media (min-width: 577px) and (max-width: 768px) {
+    .responsive-card {
+        min-height: 200px !important;
+    }
+    .responsive-card img {
+        max-width: 70px !important;
+    }
+}
+
+/* Medium and larger devices */
+@media (min-width: 769px) {
+    .responsive-card {
+        min-height: 250px !important;
+    }
+    .responsive-card img {
+        max-width: 100px !important;
+    }
+}
