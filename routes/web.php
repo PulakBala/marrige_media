@@ -11,7 +11,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
-
+use App\Http\Controllers\LocationController;
+use App\Livewire\LocationDropdown;
 
 Route::get('/', function () {
     return view('home');
@@ -37,8 +38,12 @@ Route::middleware(['auth'])->group(function () {
 Route::prefix('profile')->group(function () {
     //Dashboard
     Route::get('/dashboard', [ProfileController::class, 'dashboard'])->name('profile.dashboard');
+    Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');  // Add this route
     // Route::get('/personal-info', [ProfileController::class, 'personalInfo'])->name('profile.personal-info');
     // Route::get('/security', [ProfileController::class, 'security'])->name('profile.security');
     // Route::get('/preferences', [ProfileController::class, 'preferences'])->name('profile.preferences');
     // আরও রাউট যোগ করতে পারেন
 });
+
+
+

@@ -8,9 +8,14 @@ class ProfileController extends Controller
 {
     //
     public function dashboard()
-{
-    return view('profile.dashboard');
-}
+    {
+        return view('profile.dashboard');
+    }
+
+    public function edit()
+    {
+        return view('profile.edit');
+    }
 
 // public function personalInfo()
 // {
