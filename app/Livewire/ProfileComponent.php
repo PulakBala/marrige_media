@@ -241,7 +241,7 @@ class ProfileComponent extends Component
     {
         $this->validateCurrentStep();
 
-        dd($this->basicInfo, $this->permanent_address, $this->present_address, $this->education, $this->familyInfo, $this->personalInfo, $this->occupationInfo, $this->marriageInfo, $this->expectedPartner, $this->pledge, $this->contact);
+
 
         if ($this->currentStep < $this->totalSteps) {
             $this->currentStep++;
@@ -382,6 +382,8 @@ class ProfileComponent extends Component
     public function submit()
     {
         $this->validateCurrentStep();
+        // Data save korar por dd() call
+
 
         // Save all data to database
         // You can create separate methods for saving each section
@@ -389,6 +391,7 @@ class ProfileComponent extends Component
         session()->flash('message', 'Profile updated successfully!');
         $this->showForm = false;
         $this->currentStep = 1;
+        dd($this->basicInfo, $this->permanent_address, $this->present_address, $this->education, $this->familyInfo, $this->personalInfo, $this->occupationInfo, $this->marriageInfo, $this->expectedPartner, $this->pledge, $this->contact);
     }
 
     public function render()
