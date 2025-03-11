@@ -12,8 +12,11 @@ class LocationDropdown extends Component
     public $countries, $states, $districts, $cities;
     public $selectedCountry = null, $selectedState = null, $selectedDistrict = null, $selectedCity = null;
 
-    public function mount()
+    public $type = 'permanent'; // default
+
+    public function mount($type = 'permanent')
     {
+        $this->type = $type;
         $this->countries = Country::all(); // Load all countries initially
         $this->states = collect();
         $this->districts = collect();
@@ -48,21 +51,23 @@ class LocationDropdown extends Component
         $this->selectedCity = null;
         $this->cities = City::where('district_id', $districtId)->get();
 
-    
+
     }
 
-    public function updatedSelectedCity($cityId)
-    {
+
         // No need to reset the selectedCity here because it's already the one that's selected.
         // You can handle any other logic when the city is updated.
 
-        $this->dispatch('locationUpdated', [
-            'country_id' => $this->selectedCountry,
-            'state_id' => $this->selectedState,
-            'district_id' => $this->selectedDistrict,
-            'city_id' => $this->selectedCity, // Now this will be the updated city ID
-        ]);
-    }
+        public function updatedSelectedCity($cityId)
+        {
+            $this->dispatch("locationUpdated_{$this->type}", [
+                'country_id' => $this->selectedCountry,
+                'state_id' => $this->selectedState,
+                'district_id' => $this->selectedDistrict,
+                'city_id' => $this->selectedCity,
+            ]);
+        }
+
 
 
 
