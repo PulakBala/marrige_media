@@ -18,14 +18,14 @@ class ProfileComponent extends Component
     // Step 1: Basic Information
     public $basicInfo = [
         'full_name' => '',
-        // 'biodata_type' => '',
-        // 'marital_status' => '',
-        // 'birth_year' => '',
-        // 'height' => '',
-        // 'complexion' => '',
-        // 'weight' => '',
-        // 'blood_group' => '',
-        // 'nationality' => '',
+        'biodata_type' => '',
+        'marital_status' => '',
+        'birth_year' => '',
+        'height' => '',
+        'complexion' => '',
+        'weight' => '',
+        'blood_group' => '',
+        'nationality' => '',
     ];
 
     public $permanent_address = [
@@ -115,11 +115,20 @@ class ProfileComponent extends Component
         'expected_qualities' => '',
     ];
 
-    public $finalConfirmation = [
+    public $pledge = [
         'parents_know' => '',
         'testify_truth' => '',
         'agree' => '',
     ];
+
+    public $contact = [
+        'groomName' => '',
+        'guardianMobile' => '',
+        'relationshipWithGuardian' => '',
+        'guardianEmail' => '',
+    ];
+
+
 
 
 
@@ -208,9 +217,16 @@ class ProfileComponent extends Component
             'expectedPartner.expected_qualities' => 'required|string|max:1000',
 
             //pledge
-            'finalConfirmation.parents_know' => 'required|string',
-            'finalConfirmation.testify_truth' => 'required|string',
-            'finalConfirmation.agree' => 'required|string',
+            'pledge.parents_know' => 'required|string',
+            'pledge.testify_truth' => 'required|string',
+            'pledge.agree' => 'required|string',
+
+
+            //contact
+            'contact.groomName' => 'required|string|max:255',
+            'contact.guardianMobile' => 'required|string|regex:/^(\+?\d{1,3}[- ]?)?\d{10}$/',
+            'contact.relationshipWithGuardian' => 'required|string|max:255',
+            'contact.guardianEmail' => 'required|email|max:255',
 
     ];
 
@@ -225,8 +241,7 @@ class ProfileComponent extends Component
     {
         $this->validateCurrentStep();
 
-        // Debugging line to check the value of permanent_address
-        // dd($this->permanent_address);
+        dd($this->basicInfo, $this->permanent_address, $this->present_address, $this->education, $this->familyInfo, $this->personalInfo, $this->occupationInfo, $this->marriageInfo, $this->expectedPartner, $this->pledge, $this->contact);
 
         if ($this->currentStep < $this->totalSteps) {
             $this->currentStep++;
@@ -245,14 +260,14 @@ class ProfileComponent extends Component
         if ($this->currentStep === 1) {
             $this->validate([
                 'basicInfo.full_name' => 'required',
-                // 'basicInfo.biodata_type' => 'required',
-                // 'basicInfo.marital_status' => 'required',
-                // 'basicInfo.birth_year' => 'required',
-                // 'basicInfo.height' => 'required',
-                // 'basicInfo.complexion' => 'required',
-                // 'basicInfo.weight' => 'required|numeric',
-                // 'basicInfo.blood_group' => 'required',
-                // 'basicInfo.nationality' => 'required',
+                'basicInfo.biodata_type' => 'required',
+                'basicInfo.marital_status' => 'required',
+                'basicInfo.birth_year' => 'required',
+                'basicInfo.height' => 'required',
+                'basicInfo.complexion' => 'required',
+                'basicInfo.weight' => 'required|numeric',
+                'basicInfo.blood_group' => 'required',
+                'basicInfo.nationality' => 'required',
             ]);
         } elseif ($this->currentStep === 2) {
             $this->validate([
@@ -349,9 +364,16 @@ class ProfileComponent extends Component
             ]);
         } elseif($this->currentStep === 9){
             $this->validate([
-                'finalConfirmation.parents_know' => 'required|string',
-                'finalConfirmation.testify_truth' => 'required|string',
-                'finalConfirmation.agree' => 'required|string',
+                'pledge.parents_know' => 'required|string',
+                'pledge.testify_truth' => 'required|string',
+                'pledge.agree' => 'required|string',
+            ]);
+        } elseif($this->currentStep === 10){
+            $this->validate([
+                'contact.groomName' => 'required|string|max:255',
+                'contact.guardianMobile' => 'required|string|regex:/^(\+?\d{1,3}[- ]?)?\d{10}$/',
+                'contact.relationshipWithGuardian' => 'required|string|max:255',
+                'contact.guardianEmail' => 'required|email|max:255',
             ]);
         }
         // Add validation for other steps...

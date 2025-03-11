@@ -18,7 +18,7 @@
                                 @case(7) Marriage related information @break
                                 @case(8) Expected Life partner @break
                                 @case(9) Pledge @break
-                                @default Step {{ $i }}
+                                @default Contact {{ $i }}
                             @endswitch
                         </div>
                     </div>
@@ -37,12 +37,12 @@
 
                                 <div class="col-12 mb-3">
                                     <label class="form-label">Full Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" wire:model="basicInfo.full_name" placeholder="Enter your full name">
+                                    <input type="text" class="form-control" wire:model.lazy="basicInfo.full_name" placeholder="Enter your full name">
                                 </div>
 
-                                {{-- <div class="col-12 mb-3">
+                                <div class="col-12 mb-3">
                                     <label class="form-label">Biodata Type <span class="text-danger">*</span></label>
-                                    <select class="form-select" wire:model="basicInfo.biodata_type">
+                                    <select class="form-select" wire:model.lazy="basicInfo.biodata_type">
                                         <option value="">Select</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
@@ -51,7 +51,7 @@
 
                                 <div class="col-12 mb-3">
                                     <label class="form-label">Marital Status <span class="text-danger">*</span></label>
-                                    <select class="form-select" wire:model="basicInfo.marital_status">
+                                    <select class="form-select" wire:model.lazy="basicInfo.marital_status">
                                         <option value="">Select</option>
                                         <option value="Single">Single</option>
                                         <option value="Married">Married</option>
@@ -62,7 +62,7 @@
 
                                 <div class="col-12 mb-3">
                                     <label class="form-label">Birth Year <span class="text-danger">*</span></label>
-                                    <select class="form-select" wire:model="basicInfo.birth_year">
+                                    <select class="form-select" wire:model.lazy="basicInfo.birth_year">
                                         <option value="">Select</option>
                                         @for($year = date('Y'); $year >= date('Y') - 60; $year--)
                                             <option value="{{ $year }}">{{ $year }}</option>
@@ -73,7 +73,7 @@
 
                                 <div class="col-12 mb-3">
                                     <label class="form-label">Height <span class="text-danger">*</span></label>
-                                    <select class="form-select" wire:model="basicInfo.height">
+                                    <select class="form-select" wire:model.lazy="basicInfo.height">
                                         <option value="">Select</option>
                                         @foreach(range(4.0, 7.0, 0.1) as $height)
                                             <option value="{{ number_format($height, 1) }}">{{ number_format($height, 1) }} ft</option>
@@ -83,7 +83,7 @@
 
                                 <div class="col-12 mb-3">
                                     <label class="form-label">Complexion <span class="text-danger">*</span></label>
-                                    <select class="form-select" wire:model="basicInfo.complexion">
+                                    <select class="form-select" wire:model.lazy="basicInfo.complexion">
                                         <option value="">Select</option>
                                         <option value="Fair">Fair</option>
                                         <option value="Medium">Medium</option>
@@ -93,12 +93,12 @@
 
                                 <div class="col-12 mb-3">
                                     <label class="form-label">Weight (kg) <span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" wire:model="basicInfo.weight" placeholder="Enter weight in kg">
+                                    <input type="number" class="form-control" wire:model.lazy="basicInfo.weight" placeholder="Enter weight in kg">
                                 </div>
 
                                 <div class="col-12 mb-3">
                                     <label class="form-label">Blood Group <span class="text-danger">*</span></label>
-                                    <select class="form-select" wire:model="basicInfo.blood_group">
+                                    <select class="form-select" wire:model.lazy="basicInfo.blood_group">
                                         <option value="">Select</option>
                                         <option value="A+">A+</option>
                                         <option value="A-">A-</option>
@@ -113,8 +113,8 @@
 
                                 <div class="col-12 mb-3">
                                     <label class="form-label">Nationality <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" wire:model="basicInfo.nationality" placeholder="Enter nationality">
-                                </div> --}}
+                                    <input type="text" class="form-control" wire:model.lazy="basicInfo.nationality" placeholder="Enter nationality">
+                                </div>
                             </div>
 
                         {{-- address form      --}}
@@ -442,7 +442,7 @@
 
                             <div class="mb-4">
                                 <label class="form-label">Take a selfie of the groom right now and upload it:</label>
-                                <input type="file" class="form-control" wire:model="personalInfo.photo">
+                                <input type="file" class="form-control" wire:model.lazy="personalInfo.photo">
                                 @error('personalInfo.photo') <span class="text-danger">{{ $message }}</span> @enderror
                                 <small class="text-muted">Passport sized photos, edited photos, or photos taken from a distance are not acceptable. Photo is taken only for identity verification. Upload a recent photo where the face is clearly defined. Your photo will not be disclosed to anyone other than the admin authorities.</small>
                             </div>
@@ -631,63 +631,63 @@
 
                             <div class="mb-4">
                                 <label class="form-label">Do your parents know that you are submitting biodata to this website?</label>
-                                <select class="form-control" wire:model.lazy="finalConfirmation.parents_know">
+                                <select class="form-control" wire:model.lazy="pledge.parents_know">
                                     <option value="">Select</option>
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
                                 </select>
-                                @error('finalConfirmation.parents_know') <span class="text-danger">{{ $message }}</span> @enderror
+                                @error('pledge.parents_know') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="mb-4">
                                 <label class="form-label">By Allah, testify that all the information given is true?</label>
-                                <select class="form-control" wire:model.lazy="finalConfirmation.testify_truth">
+                                <select class="form-control" wire:model.lazy="pledge.testify_truth">
                                     <option value="">Select</option>
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
                                 </select>
-                                @error('finalConfirmation.testify_truth') <span class="text-danger">{{ $message }}</span> @enderror
+                                @error('pledge.testify_truth') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="mb-4">
                                 <label class="form-label">If you provide any false information, this website will not take any responsibility for the conventional law and the hereafter. Do you agree?</label>
-                                <select class="form-control" wire:model.lazy="finalConfirmation.agree">
+                                <select class="form-control" wire:model.lazy="pledge.agree">
                                     <option value="">Select</option>
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
                                 </select>
-                                @error('finalConfirmation.agree') <span class="text-danger">{{ $message }}</span> @enderror
+                                @error('pledge.agree') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                         @elseif($currentStep === 10)
-                        <h4 class="mb-4">Final Submission</h4>
+                            <h4 class="mb-4">Contact</h4>
 
-                        <div class="mb-4">
-                            <label class="form-label">Groom's Name</label>
-                            <input type="text" class="form-control" wire:model.lazy="groomName" placeholder="Enter full name">
-                            @error('groomName') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
+                            <div class="mb-4">
+                                <label class="form-label">Groom's Name</label>
+                                <input type="text" class="form-control" wire:model.lazy="contact.groomName" placeholder="Enter full name">
+                                @error('contact.groomName') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
 
-                        <div class="mb-4">
-                            <label class="form-label">Guardian's Mobile Number</label>
-                            <input type="text" class="form-control" wire:model.lazy="guardianMobile" placeholder="Enter guardian's mobile number">
-                            @error('guardianMobile') <span class="text-danger">{{ $message }}</span> @enderror
-                            <small class="text-muted">This number will be given if anyone wants to contact your guardian. After verifying by calling this number, the biodata will be approved. If you write the number of your friend, colleague, cousin, or yourself here, biodata will be permanently banned.</small>
-                        </div>
+                            <div class="mb-4">
+                                <label class="form-label">Guardian's Mobile Number</label>
+                                <input type="text" class="form-control" wire:model.lazy="contact.guardianMobile" placeholder="Enter guardian's mobile number">
+                                @error('contact.guardianMobile') <span class="text-danger">{{ $message }}</span> @enderror
+                                <small class="text-muted">This number will be given if anyone wants to contact your guardian. After verifying by calling this number, the biodata will be approved. If you write the number of your friend, colleague, cousin, or yourself here, biodata will be permanently banned.</small>
+                            </div>
 
-                        <div class="mb-4">
-                            <label class="form-label">Relationship with Guardian</label>
-                            <input type="text" class="form-control" wire:model.lazy="relationshipWithGuardian" placeholder="Enter relationship with guardian">
-                            @error('relationshipWithGuardian') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
+                            <div class="mb-4">
+                                <label class="form-label">Relationship with Guardian</label>
+                                <input type="text" class="form-control" wire:model.lazy="contact.relationshipWithGuardian" placeholder="Enter relationship with guardian">
+                                @error('contact.relationshipWithGuardian') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
 
-                        <div class="mb-4">
-                            <label class="form-label">E-mail to Receive Biodata</label>
-                            <input type="email" class="form-control" wire:model.lazy="guardianEmail" placeholder="Enter guardian's email address">
-                            @error('guardianEmail') <span class="text-danger">{{ $message }}</span> @enderror
-                            <small class="text-muted">To avoid unwanted incidents, enter the guardian's email address if possible.</small>
-                        </div>
+                            <div class="mb-4">
+                                <label class="form-label">E-mail to Receive Biodata</label>
+                                <input type="email" class="form-control" wire:model.lazy="contact.guardianEmail" placeholder="Enter guardian's email address">
+                                @error('contact.guardianEmail') <span class="text-danger">{{ $message }}</span> @enderror
+                                <small class="text-muted">To avoid unwanted incidents, enter the guardian's email address if possible.</small>
+                            </div>
 
-                       
+
                         @endif
 
 
@@ -718,58 +718,3 @@
     </div>
 </div>
 
-
-{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $('#country').on('change', function() {
-            var country_id = $(this).val();
-            if (country_id) {
-                $.ajax({
-                    url: '/get-states/' + country_id,
-                    type: 'GET',
-                    success: function(data) {
-                        $('#state').html('<option value="">Select State</option>');
-                        $.each(data, function(key, value) {
-                            $('#state').append('<option value="' + value.id + '">' + value.name + '</option>');
-                        });
-                    }
-                });
-            }
-        });
-
-        $('#state').on('change', function() {
-            var state_id = $(this).val();
-            if (state_id) {
-                $.ajax({
-                    url: '/get-cities/' + state_id,
-                    type: 'GET',
-                    success: function(data) {
-                        $('#city').html('<option value="">Select City</option>');
-                        $.each(data, function(key, value) {
-                            $('#city').append('<option value="' + value.id + '">' + value.name + '</option>');
-                        });
-                    }
-                });
-            }
-        });
-
-        $('#city').on('change', function() {
-            var city_id = $(this).val();
-            if (city_id) {
-                $.ajax({
-                    url: '/get-areas/' + city_id,
-                    type: 'GET',
-                    success: function(data) {
-                        $('#area').html('<option value="">Select Area</option>');
-                        $.each(data, function(key, value) {
-                            $('#area').append('<option value="' + value.id + '">' + value.name + '</option>');
-                        });
-                    }
-                });
-            }
-        });
-    });
-
-</script> --}}
