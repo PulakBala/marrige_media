@@ -5,6 +5,17 @@ namespace App\Livewire;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Country;
+use App\Models\BasicInformation;
+use App\Models\PermanentAddress;
+use App\Models\PresentAddress;
+use App\Models\Education;
+use App\Models\FamilyInformation;
+use App\Models\PersonalInformation;
+use App\Models\OccupationInformation;
+use App\Models\MarriageInformation;
+use App\Models\ExpectedPartner;
+use App\Models\Pledge;
+use App\Models\Contact;
 
 class ProfileComponent extends Component
 {
@@ -384,14 +395,147 @@ class ProfileComponent extends Component
         $this->validateCurrentStep();
         // Data save korar por dd() call
 
+         // Assuming you have models for each table
+    // Insert Basic Information
+    $basicInfo = new BasicInformation();
+    $basicInfo->user_id = auth()->id(); // Assuming the user is authenticated
+    $basicInfo->full_name = $this->basicInfo['full_name'];
+    $basicInfo->biodata_type = $this->basicInfo['biodata_type'];
+    $basicInfo->marital_status = $this->basicInfo['marital_status'];
+    $basicInfo->birth_year = $this->basicInfo['birth_year'];
+    $basicInfo->height = $this->basicInfo['height'];
+    $basicInfo->complexion = $this->basicInfo['complexion'];
+    $basicInfo->weight = $this->basicInfo['weight'];
+    $basicInfo->blood_group = $this->basicInfo['blood_group'];
+    $basicInfo->nationality = $this->basicInfo['nationality'];
+    $basicInfo->save();
 
+    // Insert Permanent Address
+    $permanentAddress = new PermanentAddress();
+    $permanentAddress->user_id = auth()->id();
+    $permanentAddress->country_id = $this->permanent_address['country_id'];
+    $permanentAddress->state_id = $this->permanent_address['state_id'];
+    $permanentAddress->district_id = $this->permanent_address['district_id'];
+    $permanentAddress->city_id = $this->permanent_address['city_id'];
+    $permanentAddress->save();
+
+    // Insert Present Address
+    $presentAddress = new PresentAddress();
+    $presentAddress->user_id = auth()->id();
+    $presentAddress->country_id = $this->present_address['country_id'];
+    $presentAddress->state_id = $this->present_address['state_id'];
+    $presentAddress->district_id = $this->present_address['district_id'];
+    $presentAddress->city_id = $this->present_address['city_id'];
+    $presentAddress->same_as_permanent = $this->addressInfo['same_as_permanent'];
+    $presentAddress->grew_up = $this->addressInfo['grew_up'];
+    $presentAddress->save();
+
+    // Insert Education
+    $education = new Education();
+    $education->user_id = auth()->id();
+    $education->method = $this->education['method'];
+    $education->higher_qualification = $this->education['higher_qualification'];
+    $education->other_qualification = $this->education['other_qualification'];
+    $education->islamic_title = $this->education['islamic_title'];
+    $education->passing_year = $this->education['passing_year'];
+    $education->group_name = $this->education['group'];
+    $education->result = $this->education['result'];
+    $education->save();
+
+    // Insert Family Information
+    $familyInfo = new FamilyInformation();
+    $familyInfo->user_id = auth()->id();
+    $familyInfo->father_name = $this->familyInfo['father_name'];
+    $familyInfo->father_alive = $this->familyInfo['father_alive'];
+    $familyInfo->father_profession = $this->familyInfo['father_profession'];
+    $familyInfo->mother_name = $this->familyInfo['mother_name'];
+    $familyInfo->mother_alive = $this->familyInfo['mother_alive'];
+    $familyInfo->mother_profession = $this->familyInfo['mother_profession'];
+    $familyInfo->brothers_count = $this->familyInfo['brothers_count'];
+    $familyInfo->sisters_count = $this->familyInfo['sisters_count'];
+    $familyInfo->financial_status = $this->familyInfo['financial_status'];
+    $familyInfo->financial_condition = $this->familyInfo['financial_condition'];
+    $familyInfo->religious_condition = $this->familyInfo['religious_condition'];
+    $familyInfo->save();
+
+    // Insert Personal Information
+    $personalInfo = new PersonalInformation();
+    $personalInfo->user_id = auth()->id();
+    $personalInfo->clothes = $this->personalInfo['clothes'];
+    $personalInfo->beard = $this->personalInfo['beard'];
+    $personalInfo->prayer = $this->personalInfo['prayer'];
+    $personalInfo->mahram = $this->personalInfo['mahram'];
+    $personalInfo->quran_recitation = $this->personalInfo['quran_recitation'];
+    $personalInfo->fiqh = $this->personalInfo['fiqh'];
+    $personalInfo->media = $this->personalInfo['media'];
+    $personalInfo->diseases = $this->personalInfo['diseases'];
+    $personalInfo->deen_work = $this->personalInfo['deen_work'];
+    $personalInfo->shrine_beliefs = $this->personalInfo['shrine_beliefs'];
+    $personalInfo->islamic_books = $this->personalInfo['islamic_books'];
+    $personalInfo->islamic_scholars = $this->personalInfo['islamic_scholars'];
+    $personalInfo->category = $this->personalInfo['category'];
+    $personalInfo->hobbies = $this->personalInfo['hobbies'];
+    $personalInfo->mobile = $this->personalInfo['mobile'];
+    $personalInfo->photo = $this->personalInfo['photo'];
+    $personalInfo->save();
+
+    // Insert Occupation Information
+    $occupationInfo = new OccupationInformation();
+    $occupationInfo->user_id = auth()->id();
+    $occupationInfo->occupation = $this->occupationInfo['occupation'];
+    $occupationInfo->description = $this->occupationInfo['description'];
+    $occupationInfo->monthly_income = $this->occupationInfo['monthly_income'];
+    $occupationInfo->save();
+
+    // Insert Marriage Information
+    $marriageInfo = new MarriageInformation();
+    $marriageInfo->user_id = auth()->id();
+    $marriageInfo->guardians_agree = $this->marriageInfo['guardians_agree'];
+    $marriageInfo->keep_veil = $this->marriageInfo['keep_veil'];
+    $marriageInfo->allow_study = $this->marriageInfo['allow_study'];
+    $marriageInfo->allow_job = $this->marriageInfo['allow_job'];
+    $marriageInfo->living_arrangement = $this->marriageInfo['living_arrangement'];
+    $marriageInfo->expect_gift = $this->marriageInfo['expect_gift'];
+    $marriageInfo->marriage_thoughts = $this->marriageInfo['marriage_thoughts'];
+    $marriageInfo->save();
+
+    // Insert Expected Partner Information
+    $expectedPartner = new ExpectedPartner();
+    $expectedPartner->user_id = auth()->id();
+    $expectedPartner->age_from = $this->expectedPartner['age_from'];
+    $expectedPartner->age_to = $this->expectedPartner['age_to'];
+    $expectedPartner->complexion = $this->expectedPartner['complexion'];
+    $expectedPartner->height = $this->expectedPartner['height'];
+    $expectedPartner->educational_qualification = $this->expectedPartner['educational_qualification'];
+    $expectedPartner->district = $this->expectedPartner['district'];
+    $expectedPartner->marital_status = $this->expectedPartner['marital_status'];
+    $expectedPartner->financial_condition = $this->expectedPartner['financial_condition'];
+    $expectedPartner->expected_qualities = $this->expectedPartner['expected_qualities'];
+    $expectedPartner->save();
+
+    // Insert Pledge Information
+    $pledge = new Pledge();
+    $pledge->user_id = auth()->id();
+    $pledge->parents_know = $this->pledge['parents_know'];
+    $pledge->testify_truth = $this->pledge['testify_truth'];
+    $pledge->agree = $this->pledge['agree'];
+    $pledge->save();
+
+    // Insert Contact Information
+    $contact = new Contact();
+    $contact->user_id = auth()->id();
+    $contact->groom_name = $this->contact['groomName'];
+    $contact->guardian_mobile = $this->contact['guardianMobile'];
+    $contact->relationship_with_guardian = $this->contact['relationshipWithGuardian'];
+    $contact->guardian_email = $this->contact['guardianEmail'];
+    $contact->save();
         // Save all data to database
         // You can create separate methods for saving each section
 
-        session()->flash('message', 'Profile updated successfully!');
+        session()->flash('notification', 'Profile updated successfully!');
         $this->showForm = false;
         $this->currentStep = 1;
-        dd($this->basicInfo, $this->permanent_address, $this->present_address, $this->education, $this->familyInfo, $this->personalInfo, $this->occupationInfo, $this->marriageInfo, $this->expectedPartner, $this->pledge, $this->contact);
+        // dd($this->basicInfo, $this->permanent_address, $this->present_address, $this->education, $this->familyInfo, $this->personalInfo, $this->occupationInfo, $this->marriageInfo, $this->expectedPartner, $this->pledge, $this->contact);
     }
 
     public function render()
