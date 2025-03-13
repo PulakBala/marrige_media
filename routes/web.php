@@ -38,7 +38,9 @@ Route::middleware(['auth'])->group(function () {
 Route::prefix('profile')->group(function () {
     //Dashboard
     Route::get('/dashboard', [ProfileController::class, 'dashboard'])->name('profile.dashboard');
-    Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');  // Add this route
+    Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/user-profile', [ProfileController::class, 'user'])->name('profile.user-profile');
+    // Add this route
     // Route::get('/personal-info', [ProfileController::class, 'personalInfo'])->name('profile.personal-info');
     // Route::get('/security', [ProfileController::class, 'security'])->name('profile.security');
     // Route::get('/preferences', [ProfileController::class, 'preferences'])->name('profile.preferences');
