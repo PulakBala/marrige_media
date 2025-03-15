@@ -18,10 +18,13 @@ class ProfileController extends Controller
         return view('profile.dashboard');
     }
 
-    public function user($id)
+    public function user($id = null)
     {
-        // Fetch the user's basic information using the provided ID
-        $basicInformation = \App\Models\BasicInformation::where('user_id', $id)->first();
+        // If no ID is provided, use the logged-in user's ID
+        $userId = $id ?? auth()->id();
+
+        // Fetch the user's basic information using the provided or logged-in ID
+        $basicInformation = \App\Models\BasicInformation::where('user_id', $userId)->first();
 
         if (!$basicInformation) {
             return view('profile.no-data');
@@ -29,40 +32,41 @@ class ProfileController extends Controller
 
         // Fetch other related information as before
         $permanentAddress = PermanentAddress::with(['country', 'state', 'district', 'city'])
-            ->where('user_id', $id)
+            ->where('user_id', $userId)
             ->first();
 
         $presenttAddress = PresentAddress::with(['country', 'state', 'district', 'city'])
-            ->where('user_id', $id)
+            ->where('user_id', $userId)
             ->first();
 
         //education details fetch
-        $educationDetails = \App\Models\Education::where('user_id', $id)->first(); // Fetch education data
+        $educationDetails = \App\Models\Education::where('user_id', $userId)->first(); // Fetch education data
 
           // Family information fetch
-        $familyInformation = \App\Models\FamilyInformation::where('user_id', $id)->first(); // Fetch family information
+        $familyInformation = \App\Models\FamilyInformation::where('user_id', $userId)->first(); // Fetch family information
 
            // Personal information fetch
-        $personalInformation = \App\Models\PersonalInformation::where('user_id', $id)->first(); // Fetch personal information
+        $personalInformation = \App\Models\PersonalInformation::where('user_id', $userId)->first(); // Fetch personal information
 
 
         // Occupation information fetch
-        $occupationInformation = \App\Models\OccupationInformation::where('user_id', $id)->first(); // Fetch occupation information
+        $occupationInformation = \App\Models\OccupationInformation::where('user_id', $userId)->first(); // Fetch occupation information
 
           // Marriage information fetch
-        $marriageInformation = \App\Models\MarriageInformation::where('user_id', $id)->first(); // Fetch marriage information
+        $marriageInformation = \App\Models\MarriageInformation::where('user_id', $userId)->first(); // Fetch marriage information
 
          // Expected partner information fetch
-        $expectedPartner = \App\Models\ExpectedPartner::where('user_id', $id)->first(); // Fetch expected partner information
+        $expectedPartner = \App\Models\ExpectedPartner::where('user_id', $userId)->first(); // Fetch expected partner information
 
          // Pledge information fetch
-        $pledge = \App\Models\Pledge::where('user_id', $id)->first(); // Fetch pledge information
+        $pledge = \App\Models\Pledge::where('user_id', $userId)->first(); // Fetch pledge information
 
         // Contact information fetch
-        $contact = \App\Models\Contact::where('user_id', $id)->first(); // Fetch contact information
+        $contact = \App\Models\Contact::where('user_id', $userId)->first(); // Fetch contact information
 
         //return view file proflie user
         return view('profile.user', compact('basicInformation', 'permanentAddress', 'presenttAddress', 'educationDetails','familyInformation','personalInformation', 'occupationInformation', 'marriageInformation','expectedPartner', 'pledge','contact')); // Pass data to the view
+
     }
 
     public function edit()

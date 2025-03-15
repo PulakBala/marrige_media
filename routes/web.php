@@ -53,7 +53,7 @@ Route::prefix('profile')->group(function () {
 
 Route::get('/all-users', [ProfileController::class, 'allUsers'])->name('all.users');
 
-Route::get('/user/{id}', [ProfileController::class, 'user'])->name('user.details');
+Route::get('/user/{id?}', [ProfileController::class, 'user'])->name('user.details');
 
 
 
