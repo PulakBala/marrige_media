@@ -22,4 +22,9 @@ class BasicInformation extends Model
         'blood_group',
         'nationality',
     ];
+
+    public function occupationInformation()
+    {
+        return $this->hasOne(OccupationInformation::class, 'user_id', 'user_id');
+    }
 }

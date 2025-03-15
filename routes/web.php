@@ -15,7 +15,9 @@ use App\Http\Controllers\LocationController;
 use App\Livewire\LocationDropdown;
 
 Route::get('/', function () {
-    return view('home');
+    // Fetch the first 9 users' basic information
+    $basicInformation = \App\Models\BasicInformation::limit(9)->get(); // Get first 9 users
+    return view('home', compact('basicInformation'));
 })->name('home');
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -33,6 +35,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
+
+
 // my profile route
 
 Route::prefix('profile')->group(function () {
@@ -46,6 +50,10 @@ Route::prefix('profile')->group(function () {
     // Route::get('/preferences', [ProfileController::class, 'preferences'])->name('profile.preferences');
     // আরও রাউট যোগ করতে পারেন
 });
+
+Route::get('/all-users', [ProfileController::class, 'allUsers'])->name('all.users');
+
+Route::get('/user/{id}', [ProfileController::class, 'user'])->name('user.details');
 
 
 

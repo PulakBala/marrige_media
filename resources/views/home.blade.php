@@ -1,7 +1,6 @@
-
-    @extends('layouts.app')
-    @section('title', 'Home')
-    @section('content')
+@extends('layouts.app')
+@section('title', 'Home')
+@section('content')
 
 <div class="home_image">
     <div class="d-flex flex-column justify-content-center align-items-center vh-100 home_banner text-white">
@@ -44,11 +43,43 @@
             </form>
         </div>
     </div>
-
 </div>
 
+<div class="container mt-4">
+    <div class="row">
+        @foreach ($basicInformation as $info)
+        <div class="col-md-4 mb-4">
+
+
+                    <div class="sidebars">
+                        <div class="avatar">
+
+                        </div>
+
+
+                        {{-- <h5 class="card-title">Biodata</h5> --}}
+                        <table class="">
+                            <tr><td><strong>Biodata Type</strong></td><td>{{ $info->biodata_type }}</td></tr>
+                            <tr><td><strong>Marital Status</strong></td><td>{{ $info->marital_status }}</td></tr>
+                            <tr><td><strong>Birth Year</strong></td><td>{{ $info->birth_year }}</td></tr>
+                            <tr><td><strong>Height</strong></td><td>{{ $info->height }}"</td></tr>
+                            <tr><td><strong>Complexion</strong></td><td>{{ $info->complexion }}</td></tr>
+                            <tr><td><strong>Weight</strong></td><td>{{ round($info->weight) }} kg</td></tr>
+                            <tr><td><strong>Blood Group</strong></td><td>{{ $info->blood_group }}</td></tr>
+                            <tr><td><strong>Nationality</strong></td><td>{{ $info->nationality }}</td></tr>
+                        </table>
+                        <a href="#" class="button">See Biodata -> </a>
+                    </div>
+
+
+        </div>
+        @endforeach
+    </div>
+</div>
 
 @endsection
+
+
 
 
 

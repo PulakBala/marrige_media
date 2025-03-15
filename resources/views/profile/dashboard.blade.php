@@ -108,12 +108,15 @@
         </div>
 
         <div class="col">
-            <div class="card h-100 text-white text-center responsive-card">
-                <div class="card-body d-flex flex-column justify-content-center align-items-center w-100">
-                    <img src="{{asset('assets/uploads/signout.svg')}}" alt="icon" class="mb-3 w-100" style="max-width: 100px; height: auto;">
-                    <p class="card-text fs-5">Logout</p>
+            <form action="{{ route('logout') }}" method="POST" style="display:inline; text-decoration: noen;">
+                @csrf
+                <div class="card h-100 text-white text-center responsive-card">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center w-100">
+                        <img src="{{asset('assets/uploads/signout.svg')}}" alt="icon" class="mb-3 w-100" style="max-width: 100px; height: auto;">
+                        <button type="submit" class="card-text fs-5 btn btn-link text-white" style="text-decoration: none;">Logout</button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
 
 

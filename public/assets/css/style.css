@@ -18,7 +18,12 @@ body{
     flex: 1 0 auto; /* This will make the wrapper take all available space */
     min-height: 0; /* This allows the wrapper to shrink if needed */
 }
-
+.navbar{
+    background-color: #2ebb55;
+}
+.sidebar{
+    background-color: #2ebb55;
+}
 
 .main-content {
     padding: 20px;
@@ -26,10 +31,112 @@ body{
     min-height: calc(100vh - 116px); /* viewport height - (navbar + footer) */
 }
 
+.footer-section{
+    background-color: #2ebb55;
+}
+.sidebar .nav-link {
+    transition: all 0.3s ease;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #ffffff;
+    color: #000000 !important;
+}
+
+.sidebar .nav-link.active {
+    background-color: #ffffff;
+    color: #000000 !important;
+    font-weight: bold;
+    border-left: 4px solid #2ebb55; /* Optional for highlight */
+}
+
 /* Add this new class for when sidebar is present */
 .has-sidebar .main-content {
     margin-left: 250px; /* Sidebar width */
 }
+
+
+
+
+.containers {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+    /* background: #fff; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+
+  }
+  .sidebars {
+    height: 600px;
+    background-color: #5c2b8c;
+    color: white;
+    padding: 20px;
+    flex: 1 1 300px;
+  }
+  .sidebars .avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: white;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+  .sidebars table {
+    width: 100%;
+    color: white;
+  }
+  .sidebars td {
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+  .content {
+    flex: 2 1 600px;
+    padding: 20px;
+  }
+  .section {
+    margin-bottom: 30px;
+  }
+  .section h3 {
+    border-bottom: 2px solid #5c2b8c;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    color: #5c2b8c;
+  }
+  .section table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .section td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  .button {
+    display: inline-block;
+    background: linear-gradient(45deg, #5c2b8c, #e84d9a);
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-top: 20px;
+  }
+  .logo-space {
+    height: 60px;
+    width: 100%;
+    border: 2px dashed #ccc;
+    text-align: center;
+    line-height: 60px;
+    margin-bottom: 20px;
+    color: #999;
+  }
+
+
+
+
+
 
 /* sidebar css  */
 /* Mobile responsive styles */

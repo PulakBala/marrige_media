@@ -6,13 +6,17 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     public function login(Request $request)
-
     {
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            return $this->redirectToDashboard($user); // Redirect to dashboard
+            // Check if the user is still authenticated
+            if (Auth::check()) {
+                return $this->redirectToDashboard($user); // Redirect to dashboard
+            } else {
+                return redirect()->route('home'); // Redirect to home if not authenticated
+            }
         } else {
             return redirect()->back()->with('error', 'Invalid email or password.');
         }

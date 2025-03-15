@@ -1,84 +1,9 @@
 @extends('layouts.app')
 @section('content')
-<style>
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 1000px;
-    margin: auto;
-    /* background: #fff; */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
 
-  }
-  .sidebar {
-    height: 600px;
-    background-color: #5c2b8c;
-    color: white;
-    padding: 20px;
-    flex: 1 1 300px;
-  }
-  .sidebar .avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: white;
-    margin: auto;
-    margin-bottom: 20px;
-  }
-  .sidebar table {
-    width: 100%;
-    color: white;
-  }
-  .sidebar td {
-    padding: 6px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-  }
-  .content {
-    flex: 2 1 600px;
-    padding: 20px;
-  }
-  .section {
-    margin-bottom: 30px;
-  }
-  .section h3 {
-    border-bottom: 2px solid #5c2b8c;
-    padding-bottom: 5px;
-    margin-bottom: 15px;
-    color: #5c2b8c;
-  }
-  .section table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  .section td {
-    padding: 8px;
-    border: 1px solid #ddd;
-  }
-  .button {
-    display: inline-block;
-    background: linear-gradient(45deg, #5c2b8c, #e84d9a);
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 25px;
-    margin-top: 20px;
-  }
-  .logo-space {
-    height: 60px;
-    width: 100%;
-    border: 2px dashed #ccc;
-    text-align: center;
-    line-height: 60px;
-    margin-bottom: 20px;
-    color: #999;
-  }
-</style>
-<div class="container min-vh-100 py-4">
+<div class="containers min-vh-100 py-4">
 
-        <div class="sidebar">
+        <div class="sidebars">
              <div class="avatar">
 
              </div>

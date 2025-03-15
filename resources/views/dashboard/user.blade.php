@@ -1,10 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'User Dashboard')
+@section('title', 'Happy Holi Celebration')
 
 @section('content')
-    <div class="container">
-        <h2>User Dashboard</h2>
-    <p>Welcome, {{ auth()->user()->name }}!</p>
-    </div>
+
+
+<div class="holi-container">
+    pualk
+</div>
+
+
 @endsection

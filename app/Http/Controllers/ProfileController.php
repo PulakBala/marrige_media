@@ -18,51 +18,51 @@ class ProfileController extends Controller
         return view('profile.dashboard');
     }
 
-    public function user()
+    public function user($id)
     {
-        $userId = auth()->id(); // or manually provide an ID like $userId = 3;
-        //basic address for profile sidebar
-        $basicInformation = \App\Models\BasicInformation::where('user_id', $userId)->first(); // or ->get() if multiple
+        // Fetch the user's basic information using the provided ID
+        $basicInformation = \App\Models\BasicInformation::where('user_id', $id)->first();
 
-        //permanent addres for user
+        if (!$basicInformation) {
+            return view('profile.no-data');
+        }
+
+        // Fetch other related information as before
         $permanentAddress = PermanentAddress::with(['country', 'state', 'district', 'city'])
-        ->where('user_id', $userId)
-        ->first();
+            ->where('user_id', $id)
+            ->first();
 
-        //present addres for user
         $presenttAddress = PresentAddress::with(['country', 'state', 'district', 'city'])
-
-        ->where('user_id', $userId)
-        ->first();
+            ->where('user_id', $id)
+            ->first();
 
         //education details fetch
-        $educationDetails = \App\Models\Education::where('user_id', $userId)->first(); // Fetch education data
+        $educationDetails = \App\Models\Education::where('user_id', $id)->first(); // Fetch education data
 
           // Family information fetch
-        $familyInformation = \App\Models\FamilyInformation::where('user_id', $userId)->first(); // Fetch family information
+        $familyInformation = \App\Models\FamilyInformation::where('user_id', $id)->first(); // Fetch family information
 
            // Personal information fetch
-        $personalInformation = \App\Models\PersonalInformation::where('user_id', $userId)->first(); // Fetch personal information
+        $personalInformation = \App\Models\PersonalInformation::where('user_id', $id)->first(); // Fetch personal information
 
 
         // Occupation information fetch
-        $occupationInformation = \App\Models\OccupationInformation::where('user_id', $userId)->first(); // Fetch occupation information
+        $occupationInformation = \App\Models\OccupationInformation::where('user_id', $id)->first(); // Fetch occupation information
 
           // Marriage information fetch
-        $marriageInformation = \App\Models\MarriageInformation::where('user_id', $userId)->first(); // Fetch marriage information
+        $marriageInformation = \App\Models\MarriageInformation::where('user_id', $id)->first(); // Fetch marriage information
 
          // Expected partner information fetch
-        $expectedPartner = \App\Models\ExpectedPartner::where('user_id', $userId)->first(); // Fetch expected partner information
+        $expectedPartner = \App\Models\ExpectedPartner::where('user_id', $id)->first(); // Fetch expected partner information
 
          // Pledge information fetch
-        $pledge = \App\Models\Pledge::where('user_id', $userId)->first(); // Fetch pledge information
+        $pledge = \App\Models\Pledge::where('user_id', $id)->first(); // Fetch pledge information
 
         // Contact information fetch
-        $contact = \App\Models\Contact::where('user_id', $userId)->first(); // Fetch contact information
+        $contact = \App\Models\Contact::where('user_id', $id)->first(); // Fetch contact information
 
         //return view file proflie user
         return view('profile.user', compact('basicInformation', 'permanentAddress', 'presenttAddress', 'educationDetails','familyInformation','personalInformation', 'occupationInformation', 'marriageInformation','expectedPartner', 'pledge','contact')); // Pass data to the view
-
     }
 
     public function edit()
@@ -85,4 +85,12 @@ class ProfileController extends Controller
 // {
 //     return view('profile.preferences');
 // }
+
+public function allUsers()
+{
+    // Fetch all users' basic information and occupation information
+    $basicInformation = \App\Models\BasicInformation::with('occupationInformation')->limit(18)->get(); // Adjust limit as needed
+
+    return view('profile.all-users', compact('basicInformation'));
+}
 }

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-dark  fixed-top shadow">
     <div class="container">
         <a class="navbar-brand" href="#">Matrimony</a>
         <div>
