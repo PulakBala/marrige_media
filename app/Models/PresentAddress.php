@@ -40,4 +40,9 @@ class PresentAddress extends Model
     {
         return $this->belongsTo(City::class);
     }
+
+    public function logError($message)
+    {
+        \Log::error($message);
+    }
 }

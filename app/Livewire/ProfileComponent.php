@@ -16,6 +16,7 @@ use App\Models\MarriageInformation;
 use App\Models\ExpectedPartner;
 use App\Models\Pledge;
 use App\Models\Contact;
+use Illuminate\Support\Facades\Log;
 
 class ProfileComponent extends Component
 {
@@ -268,6 +269,7 @@ class ProfileComponent extends Component
 
     protected function validateCurrentStep()
     {
+
         if ($this->currentStep === 1) {
             $this->validate([
                 'basicInfo.full_name' => 'required',
@@ -281,21 +283,30 @@ class ProfileComponent extends Component
                 'basicInfo.nationality' => 'required',
             ]);
         } elseif ($this->currentStep === 2) {
-            $this->validate([
-                'permanent_address.country_id' => 'required|exists:countries,id',
-                'permanent_address.state_id' => 'required|exists:states,id',
-                'permanent_address.district_id' => 'required|exists:districts,id',
-                'permanent_address.city_id' => 'required|exists:cities,id',
-                'addressInfo.grew_up' => 'required|string|min:3',
-            ]);
+            try{
+                $this->validate([
+                    'permanent_address.country_id' => 'required',
+                    'permanent_address.state_id' => 'required',
+                    'permanent_address.district_id' => 'required',
+                    'permanent_address.city_id' => 'nullable', // Make city optional
+                    'addressInfo.grew_up' => 'nullable|string|min:3',
+                ]);
+
+            } catch(\Illuminate\Validation\ValidationException $e){
+                // Handle validation errors
+                 Log::error('Validation failed: ', $e->errors());
+            }
+
+
+
 
             // If checkbox is NOT checked, then validate present address separately
             if (!$this->addressInfo['same_as_permanent']) {
                 $this->validate([
-                    'present_address.country_id' => 'required|exists:countries,id',
-                    'present_address.state_id' => 'required|exists:states,id',
-                    'present_address.district_id' => 'required|exists:districts,id',
-                    'present_address.city_id' => 'required|exists:cities,id',
+                    'present_address.country_id' => 'required',
+                    'present_address.state_id' => 'required',
+                    'present_address.district_id' => 'required',
+                    'present_address.city_id' => 'nullable', // Make city optional
                 ]);
             } else {
                 // If same_as_permanent is checked, copy data
@@ -393,7 +404,7 @@ class ProfileComponent extends Component
     public function submit()
     {
         $this->validateCurrentStep();
-        // Data save korar por dd() call
+        // Data save korar por dd() cal
 
          // Assuming you have models for each table
         // Insert Basic Information
@@ -416,7 +427,7 @@ class ProfileComponent extends Component
         $permanentAddress->country_id = $this->permanent_address['country_id'];
         $permanentAddress->state_id = $this->permanent_address['state_id'];
         $permanentAddress->district_id = $this->permanent_address['district_id'];
-        $permanentAddress->city_id = $this->permanent_address['city_id'];
+        $permanentAddress->city_id = $this->permanent_address['city_id'] ?? null; // Set to null if not selected
         $permanentAddress->save();
 
         // Insert Present Address
@@ -425,7 +436,7 @@ class ProfileComponent extends Component
         $presentAddress->country_id = $this->present_address['country_id'];
         $presentAddress->state_id = $this->present_address['state_id'];
         $presentAddress->district_id = $this->present_address['district_id'];
-        $presentAddress->city_id = $this->present_address['city_id'];
+        $presentAddress->city_id = $this->present_address['city_id'] ?? null; // Set to null if not selected
         $presentAddress->same_as_permanent = $this->addressInfo['same_as_permanent'];
         $presentAddress->grew_up = $this->addressInfo['grew_up'];
         $presentAddress->save();
