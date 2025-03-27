@@ -12,7 +12,12 @@
             <a href="#" class="nav-link text-black {{ request()->is('messages') ? 'active' : '' }}"><i class="fas fa-envelope me-2"></i>Messages
             </a></li>
         <li class="nav-item shadow">
-            <a href="#" class="nav-link text-black {{ request()->is('activity') ? 'active' : '' }}"><i class="fas fa-chart-line me-2"></i>Activity</a></li>
+            <a href="{{route('connection')}}" class="nav-link text-black {{ request()->is('connection') ? 'active' : '' }}"><i class="fas fa-chart-line me-2"></i>connection</a></li>
+
+
+            <li class="nav-item shadow">
+                <a href="{{ route('connection.add') }}" class="nav-link text-black {{ request()->is('connection/add') ? 'active' : '' }}"><i class="fas fa-chart-line me-2"></i>Add Connection</a></li>
+
         <li class="nav-item shadow">
             <a href="#" class="nav-link text-black {{ request()->is('search') ? 'active' : '' }}"><i class="fas fa-search me-2"></i>Search</a></li>
         <li class="nav-item shadow">
@@ -25,7 +30,7 @@
             <a href="#" class="nav-link text-black {{ request()->is('settings') ? 'active' : '' }}"><i class="fas fa-cog me-2"></i>Settings
             </a></li>
         <li class="nav-item shadow">
-            <a href="#" class="nav-link text-black {{ request()->is('help') ? 'active' : '' }}"><i class="fas fa-question-circle me-2"></i>Help
+            <a href="#" class="nav-link text-black {{ request()->is('help') ? 'active' : '' }}"><i class="fas fa-question-circle me-2"></i>Contact
             </a></li>
         <li class="nav-item shadow"><a href="#" class="nav-link text-black {{ request()->is('other-pages') ? 'active' : '' }}"><i class="fas fa-ellipsis-h me-2"></i>Other Pages
         </a></li>
