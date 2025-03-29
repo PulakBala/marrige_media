@@ -18,6 +18,14 @@
             <li class="nav-item shadow">
                 <a href="{{ route('connection.add') }}" class="nav-link text-black {{ request()->is('connection/add') ? 'active' : '' }}"><i class="fas fa-chart-line me-2"></i>Add Connection</a></li>
 
+                <li class="nav-item">
+                    <a href="{{ route('subscriptions.index') }}"
+                       class="nav-link {{ request()->routeIs('subscriptions.index') ? 'active text-white ' : 'text-black' }}">
+                        <i class="fas fa-list me-2"></i>My Subscriptions
+                    </a>
+                </li>
+
+
         <li class="nav-item shadow">
             <a href="#" class="nav-link text-black {{ request()->is('search') ? 'active' : '' }}"><i class="fas fa-search me-2"></i>Search</a></li>
         <li class="nav-item shadow">

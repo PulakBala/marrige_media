@@ -42,12 +42,24 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/connection', [ConnectionController::class, 'index'])->name('connection'); // Updated line
     Route::get('/connection/add', [ConnectionController::class, 'create'])->name('connection.add'); // New line for add connection
-    // ... existing code ...
+
+    // package store in database
     Route::post('/connection/store', [ConnectionController::class, 'store'])->name('package.store'); // New line for storing package
+
+    //connection package delete
     Route::delete('/connection/{id}', [ConnectionController::class, 'destroy'])->name('package.delete'); // New line for delete route
 
+    //connection package edit and update
     Route::get('/connection/{id}/edit', [ConnectionController::class, 'edit'])->name('package.edit'); // New line for edit route
     Route::put('/connection/{id}', [ConnectionController::class, 'update'])->name('package.update'); // New line for update route
+
+    //connection purchase
+    Route::post('/purchase-package', [ConnectionController::class, 'purchase'])->name('purchase.package');
+
+    // my subscriptions data displaye file
+    Route::get('/my-subscriptions', [ConnectionController::class, 'mySubscriptions'])->name('subscriptions.index');
+
+
 // ... existing code ...
 
 
