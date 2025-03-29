@@ -90,7 +90,7 @@
                         alert("Package purchased successfully!");
                         location.reload();
                     } else {
-                        alert("Something went wrong!");
+                        alert(data.message || "Something went wrong!");
                     }
                 })
                 .catch(error => console.error("Error:", error));

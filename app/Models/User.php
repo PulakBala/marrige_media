@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -67,12 +67,20 @@ class User extends Authenticatable
             'password' => bcrypt($validatedData['password']),
         ]);
     }
+
     public function isAdmin()
-{
-    return $this->role === 'admin'; // Role check korbe
-}
-public function isUser()
-{
-    return $this->role === 'user'; // Role check korbe
-}
+    {
+        return $this->role === 'admin';  // Role check korbe
+    }
+
+    public function isUser()
+    {
+        return $this->role === 'user';  // Role check korbe
+    }
+
+    // subscription addd
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
 }

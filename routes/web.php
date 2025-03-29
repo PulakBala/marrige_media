@@ -59,6 +59,10 @@ Route::middleware(['auth'])->group(function () {
     // my subscriptions data displaye file
     Route::get('/my-subscriptions', [ConnectionController::class, 'mySubscriptions'])->name('subscriptions.index');
 
+    //upgrade
+    Route::post('/subscriptions/upgrade', [ConnectionController::class, 'upgradePackage'])->name('subscriptions.upgrade');
+
+
 
 // ... existing code ...
 
