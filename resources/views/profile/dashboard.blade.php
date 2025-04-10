@@ -54,12 +54,14 @@
             </div>
         </div>
         <div class="col">
+            <a href="{{route('profile.contacts/viewed')}}">
             <div class="card h-100 text-white text-center responsive-card" >
                 <div class="card-body d-flex flex-column justify-content-center align-items-center w-100">
                     <img src="{{asset('assets/uploads/accepted-proposal.svg')}}" alt="icon" class="mb-3 w-100" style="max-width: 100px; height: auto;">
                     <p class="card-text fs-5">Contact</p>
                 </div>
             </div>
+          </a>
         </div>
 
         <div class="col">
@@ -99,12 +101,14 @@
             </div>
         </div>
         <div class="col">
+            <a href="{{route('settings')}}">
             <div class="card h-100 text-white text-center responsive-card" >
                 <div class="card-body d-flex flex-column justify-content-center align-items-center w-100">
                     <img src="{{asset('assets/uploads/password.svg')}}" alt="icon" class="mb-3 w-100" style="max-width: 100px; height: auto;">
                     <p class="card-text fs-5">Passwrod</p>
                 </div>
             </div>
+            </a>
         </div>
 
         <div class="col">

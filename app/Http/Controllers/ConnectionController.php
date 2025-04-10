@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Package;
 use App\Models\UserPackage;
+use App\Models\viewedContact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -97,7 +98,7 @@ class ConnectionController extends Controller
     public function purchase(Request $request)
     {
         // Log the incoming request data
-        \Log::info('Purchase request data:', $request->all());
+        // \Log::info('Purchase request data:', $request->all());
 
         $user = Auth::user();
         $package = Package::findOrFail($request->package_id);
@@ -193,4 +194,16 @@ class ConnectionController extends Controller
 
         return redirect()->route('subscriptions.index')->with('success', 'Package upgraded successfully!');
     }
+
+    public function viewedContacts()
+    {
+        $viewedContacts = ViewedContact::with('contact')
+        ->where('user_id', auth()->id())
+        ->latest()
+        ->get();
+    
+    return view('profile.connection_list', compact('viewedContacts'));
+    
+    }
+
 }

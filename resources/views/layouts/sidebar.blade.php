@@ -8,9 +8,9 @@
             <a href="{{ route('all.users') }}" class="nav-link text-black {{ request()->routeIs('all.users') ? 'active' : '' }}">
                 <i class="fas fa-users me-2"></i>Home
             </a></li>
-        <li class="nav-item shadow">
+        {{-- <li class="nav-item shadow">
             <a href="#" class="nav-link text-black {{ request()->is('messages') ? 'active' : '' }}"><i class="fas fa-envelope me-2"></i>Messages
-            </a></li>
+            </a></li> --}}
         <li class="nav-item shadow">
             <a href="{{route('connection')}}" class="nav-link text-black {{ request()->is('connection') ? 'active' : '' }}"><i class="fas fa-chart-line me-2"></i>connection</a></li>
 
@@ -28,20 +28,20 @@
 
         <li class="nav-item shadow">
             <a href="#" class="nav-link text-black {{ request()->is('search') ? 'active' : '' }}"><i class="fas fa-search me-2"></i>Search</a></li>
-        <li class="nav-item shadow">
+        {{-- <li class="nav-item shadow">
             <a href="#" class="nav-link text-black {{ request()->is('popular-searches') ? 'active' : '' }}"><i class="fas fa-fire me-2"></i>Popular Searches
-            </a></li>
+            </a></li> --}}
         <li class="nav-item shadow">
             <a href="{{route('profile.dashboard')}}" class="nav-link text-black {{ request()->routeIs('profile.dashboard') ? 'active' : '' }}"><i class="fas fa-user me-2"></i>My Profile
             </a></li>
         <li class="nav-item shadow">
-            <a href="#" class="nav-link text-black {{ request()->is('settings') ? 'active' : '' }}"><i class="fas fa-cog me-2"></i>Settings
+            <a href="{{route('settings')}}" class="nav-link text-black {{ request()->is('settings') ? 'active' : '' }}"><i class="fas fa-cog me-2"></i>Settings
             </a></li>
         <li class="nav-item shadow">
-            <a href="#" class="nav-link text-black {{ request()->is('help') ? 'active' : '' }}"><i class="fas fa-question-circle me-2"></i>Contact
+            <a href="#" class="nav-link text-black {{ request()->is('help') ? 'active' : '' }}"><i class="fas fa-question-circle me-2"></i>Help & Support
             </a></li>
-        <li class="nav-item shadow"><a href="#" class="nav-link text-black {{ request()->is('other-pages') ? 'active' : '' }}"><i class="fas fa-ellipsis-h me-2"></i>Other Pages
-        </a></li>
+        {{-- <li class="nav-item shadow"><a href="#" class="nav-link text-black {{ request()->is('other-pages') ? 'active' : '' }}"><i class="fas fa-ellipsis-h me-2"></i>Other Pages
+        </a></li> --}}
 
 
 
