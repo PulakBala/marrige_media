@@ -22,6 +22,10 @@ Route::get('/', function () {
     return view('home', compact('basicInformation'));
 })->name('home');
 
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/', [UserController::class, 'register'])->name('register');
 
@@ -74,6 +78,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/settings', [SettingsControllers::class, 'index'])->name('settings');
     Route::post('/settings/update-password', [SettingsControllers::class, 'updatePassword'])->name('settings.updatePassword');
 
+    //short list
+    Route::post('/shortlist', [UserController::class, 'shortlist'])->name('user.shortlist');
+
+    //ignore list
+    Route::post('/ignore', [UserController::class, 'ignore'])->name('user.ignore');
+
+    //short list view
+    Route::get('/shortlist',[UserController::class, 'shortlistView'])->name('user.shortlist');
+
+    //ignore list view
+    Route::get('/ignorelist', [UserController::class, 'ignorelistView'])->name('user.ignorelist');
 
     // ... existing code ...
 });
@@ -87,6 +102,14 @@ Route::prefix('profile')->group(function () {
     Route::get('/user-profile', [ProfileController::class, 'user'])->name('profile.user-profile');
     // Add this route
     Route::get('/contacts/viewed', [ConnectionController::class, 'viewedContacts'])->name('profile.contacts/viewed');
+
+
+    //short list
+    // Route::post('/shortlist', [UserController::class, 'shortlist'])->name('user.shortlist');
+
+
+
+
     // Route::get('/security', [ProfileController::class, 'security'])->name('profile.security');
     // Route::get('/preferences', [ProfileController::class, 'preferences'])->name('profile.preferences');
     // আরও রাউট যোগ করতে পারেন

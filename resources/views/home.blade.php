@@ -99,8 +99,14 @@
                     </div>
 
                     <!-- Button Section -->
-                    <div class="text-center mt-3 mb-3">
+                    {{-- <div class="text-center mt-3 mb-3">
                         <a href="{{ route('user.details', $info->user_id) }}" class="btn btn-outline-dark px-4 rounded-pill fw-semibold">Biodata Details</a>
+                    </div> --}}
+
+                    <div class="text-center mt-3 mb-3">
+                        <button type="button" class="btn btn-outline-dark px-4 rounded-pill fw-semibold" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            Biodata Details
+                        </button>
                     </div>
                 </div>
             </div>

@@ -3,44 +3,71 @@
     <div class="containers min-vh-100 py-4">
 
         <div class="sidebars">
-            <div class="avatar">
 
+            <div class="sidebar-content">
+                <div class="avatar">
+                    @if(trim(strtolower($basicInformation->biodata_type)) === 'male')
+                        <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="Male Avatar">
+                    @elseif(trim(strtolower($basicInformation->biodata_type)) === 'female')
+                        <img src="https://cdn-icons-png.flaticon.com/512/4140/4140047.png" alt="Female Avatar">
+                    @else
+                        <img src="{{ asset('images/default.png') }}" alt="Default Avatar">
+                    @endif
+                </div>
+                <table>
+                    <tr>
+                        <td><strong>Full Name</strong></td>
+                        <td>{{ $basicInformation->full_name }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Biodata Type</strong></td>
+                        <td>{{ $basicInformation->biodata_type }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marital Status</strong></td>
+                        <td>{{ $basicInformation->marital_status }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Birth Year</strong></td>
+                        <td>{{ $basicInformation->birth_year }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Height</strong></td>
+                        <td>{{ $basicInformation->height }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Complexion</strong></td>
+                        <td>{{ $basicInformation->complexion }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Weight</strong></td>
+                        <td>{{ round($basicInformation->weight) }} kg</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Blood Group</strong></td>
+                        <td>{{ $basicInformation->blood_group }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nationality</strong></td>
+                        <td>{{ $basicInformation->nationality }}</td>
+                    </tr>
+                </table>
             </div>
-            <table>
-                <tr>
-                    <td><strong>Biodata Type</strong></td>
-                    <td>{{ $basicInformation->biodata_type }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Marital Status</strong></td>
-                    <td>{{ $basicInformation->marital_status }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Birth Year</strong></td>
-                    <td>{{ $basicInformation->birth_year }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Height</strong></td>
-                    <td>{{ $basicInformation->height }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Complexion</strong></td>
-                    <td>{{ $basicInformation->complexion }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Weight</strong></td>
-                    <td>{{ round($basicInformation->weight) }} kg</td>
-                </tr>
-                <tr>
-                    <td><strong>Blood Group</strong></td>
-                    <td>{{ $basicInformation->blood_group }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Nationality</strong></td>
-                    <td>{{ $basicInformation->nationality }}</td>
-                </tr>
-            </table>
-            <a href="#" class="button">Copy Biodata Link</a>
+            <div class="mt-3">
+                <div class="d-flex justify-content-center gap-4 md-gap-5">
+                    <a href="#" class="btn btn-outline-primary px-2 md-px-4" onclick="shortlistUser({{ $basicInformation->user_id }})">
+                        <i class="fas fa-check"></i> SHORTLIST
+                    </a>
+                    <a href="#" class="btn btn-outline-danger px-2 md-px-4" onclick="ignoreUser({{ $basicInformation->user_id }})">
+                        <i class="fas fa-times"></i> IGNORE
+                    </a>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="#" class=" d-flex justify-content-center mt-3 button" >
+                        <i class="fas fa-link"></i> Copy Biodata Link
+                    </a>
+                </div>
+            </div>
         </div>
 
 
@@ -385,26 +412,7 @@
         </div>
     </div>
 
-    {{-- view contact button js code heare  --}}
-    {{-- <script>
-        function viewContactInformation() {
-            axios.get('/check-package-status')
-                .then(response => {
-                    if (response.data.success) {
-                        // Show contact info if conditions are met
-                        document.getElementById('contactInfo').style.display = 'block';
-                    } else {
-                        // Show error message if conditions are not met
-                        alert(response.data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error("There was an error checking package status:", error);
-                });
-        }
-    </script> --}}
-
-
+{{-- view hide contact information js code  --}}
 <script>
     function viewContactInformation() {
         const contactId = document.getElementById('contactInfo').getAttribute('data-contact-id');
@@ -428,6 +436,36 @@
         .catch(error => {
             console.error("There was an error checking package status:", error);
         });
+    }
+</script>
+
+{{-- shortlist and ignore list add js code  --}}
+
+<script>
+    function shortlistUser(userId) {
+        axios.post('/shortlist', { user_id: userId })
+            .then(response => {
+                if (response.data.success) {
+                    alert(response.data.message);
+                    // এখানে UI আপডেট করুন
+                }
+            })
+            .catch(error => {
+                console.error("There was an error shortlisting the user:", error);
+            });
+    }
+
+    function ignoreUser(userId) {
+        axios.post('/ignore', { user_id: userId })
+            .then(response => {
+                if (response.data.success) {
+                    alert(response.data.message);
+                    // এখানে UI আপডেট করুন
+                }
+            })
+            .catch(error => {
+                console.error("There was an error ignoring the user:", error);
+            });
     }
 </script>
 

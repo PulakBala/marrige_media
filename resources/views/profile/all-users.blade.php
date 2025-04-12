@@ -25,6 +25,10 @@
                     <div class="d-flex justify-content-center">
                         <table class=" table-borderless w-auto mb-0">
                             <tr>
+                                <td class="fw-semibold text-dark pe-3 text-start">Name</td>
+                                <td class="text-muted text-start"> : {{ $info->full_name }}</td>
+                            </tr>
+                            <tr>
                                 <td class="fw-semibold text-dark pe-3 text-start">Biodata Type</td>
                                 <td class="text-muted text-start"> : {{ $info->biodata_type }}</td>
                             </tr>

@@ -1,17 +1,18 @@
 <?php
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
+
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Models\ShortlistedUser;
+use App\Models\IgnoredUser;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function register(Request $request)
     {
         try {
-
-
             $validatedData = $request->validate([
                 'first_name' => 'required|string|max:255',
                 'last_name' => 'required|string|max:255',
@@ -33,25 +34,54 @@ class UserController extends Controller
             $user = User::create([
                 'name' => $request->first_name . ' ' . $request->last_name,
                 'email' => $request->email,
-                'password' => bcrypt($request->password), // Secure Password Hashing
+                'password' => bcrypt($request->password),  // Secure Password Hashing
                 'profile_type' => $request->profile_type,
                 'gender' => $request->gender,
                 'dob' => $dob,
                 'religion' => $request->religion,
                 'country_code' => $request->country_code,
                 'mobile_number' => $mobile_number,
-                'role' => 'user' // Default: new users will be 'user'
+                'role' => 'user'  // Default: new users will be 'user'
             ]);
 
             Auth::login($user);
-           // Redirect to the dashboard after successful registration
-        return redirect()->route('dashboard')->with('success', 'User registered successfully!');
-
+            // Redirect to the dashboard after successful registration
+            return redirect()->route('dashboard')->with('success', 'User registered successfully!');
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
+    // shortlist method
+    public function shortlist(Request $request) {
+        $userId = $request->input('user_id');
 
+        // Shortlist করার জন্য ডেটা সংরক্ষণ করুন
+        ShortlistedUser::create(['user_id' => $userId]);
 
+        return response()->json(['success' => true, 'message' => 'User shortlisted successfully.']);
+    }
+
+    public function ignore(Request $request)
+    {
+        $userId = $request->input('user_id');
+
+        $ignored = new IgnoredUser();
+        $ignored->user_id = $userId;
+        $ignored->save();
+
+        return response()->json(['success' => true, 'message' => 'User ignored successfully.']);
+    }
+
+    public function shortlistView()
+    {
+        $shortlisted = ShortlistedUser::with('user')->get();
+        return view('user.shortlist', compact('shortlisted'));
+    }
+
+    public function ignoreListView()
+    {
+        $ignored = IgnoredUser::with('user')->get();
+        return view('user.ignorelist', compact('ignored'));
+    }
 }
