@@ -8,7 +8,7 @@
         <div class="col-lg-6 col-md-8 p-0 m-0">
             <div class="card shadow-lg border-0 rounded-4">
                 <div class="card-header bg-white text-center rounded-top-4">
-                    <h4 class="mb-0"><i class="fas fa-lock me-2 text-primary"></i>Change Password</h4>
+                    <h4 class="mb-0"><i class="fas fa-lock me-2 text-primary"></i>পাসওয়ার্ড পরিবর্তন করুন</h4>
                 </div>
                 <div class="card-body p-4">
                     <form action="{{ route('settings.updatePassword') }}" method="POST">
@@ -16,7 +16,7 @@
 
                         {{-- Current Password --}}
                         <div class="mb-3">
-                            <label for="current_password" class="form-label">Current Password</label>
+                            <label for="current_password" class="form-label">বর্তমান পাসওয়ার্ড</label>
                             <div class="input-group">
                                 <input type="password" class="form-control" id="current_password" name="current_password" required>
                                 <span class="input-group-text toggle-password" onclick="togglePassword('current_password')">
@@ -27,7 +27,7 @@
 
                         {{-- New Password --}}
                         <div class="mb-3">
-                            <label for="new_password" class="form-label">New Password</label>
+                            <label for="new_password" class="form-label"> নতুন পাসওয়ার্ড</label>
                             <div class="input-group">
                                 <input type="password" class="form-control" id="new_password" name="new_password" required>
                                 <span class="input-group-text toggle-password" onclick="togglePassword('new_password')">
@@ -38,7 +38,7 @@
 
                         {{-- Confirm New Password --}}
                         <div class="mb-4">
-                            <label for="new_password_confirmation" class="form-label">Confirm New Password</label>
+                            <label for="new_password_confirmation" class="form-label">নতুন পাসওয়ার্ড নিশ্চিত করুন</label>
                             <div class="input-group">
                                 <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation" required>
                                 <span class="input-group-text toggle-password" onclick="togglePassword('new_password_confirmation')">
@@ -48,7 +48,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100">
-                            <i class="fas fa-save me-1"></i> Update Password
+                            <i class="fas fa-save me-1"></i> পাসওয়ার্ড আপডেট করুন
                         </button>
                     </form>
                 </div>

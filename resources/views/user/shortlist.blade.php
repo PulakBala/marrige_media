@@ -1,39 +1,50 @@
 @extends('layouts.app')
 
 @section('content')
-<h3 class="mb-3">Shortlisted Users</h3>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Contact</th>
-            <th>View profile</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($shortlisted as $key => $item)
-            <tr>
-                <td>{{ $key + 1 }}</td>
-                <td>{{ $item->user->name ?? 'N/A' }}</td>
-                <td>{{ $item->user->email ?? 'N/A' }}</td>
-                <td>
-                    @if(!empty($item->user->mobile_number))
-                        {{ $item->user->mobile_number }}
-                    @else
-                        <span class="text-muted">Contact information not available</span>
-                    @endif
-                </td>
-                <td>
-                    @if($item->user)
-                    <a href="{{ route('user.details', ['id' => $item->user->id]) }}" class="btn btn-primary">View Profile</a>
-                @else
-                    <span class="text-muted">No Contact Info</span>
-                @endif
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+<div class="container">
+    <h3 class="mb-4 fw-bold">শর্টলিস্টকৃত ব্যবহারকারীদের তালিকা</h3>
+
+    <div class="table-responsive shadow rounded">
+        <table class="table table-striped table-bordered align-middle text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>ক্রমিক</th>
+                    <th>নাম</th>
+                    <th>ইমেইল</th>
+                    <th>মোবাইল নম্বর</th>
+                    <th>প্রোফাইল দেখুন</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($shortlisted as $key => $item)
+                    <tr>
+                        <td>{{ $key + 1 }}</td>
+                        <td>{{ $item->user->name ?? 'উল্লেখ নেই' }}</td>
+                        <td>{{ $item->user->email ?? 'উল্লেখ নেই' }}</td>
+                        <td>
+                            @if(!empty($item->user->mobile_number))
+                                {{ $item->user->mobile_number }}
+                            @else
+                                <span class="text-muted">যোগাযোগের তথ্য নেই</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if($item->user)
+                                <a href="{{ route('user.details', ['id' => $item->user->id]) }}" class="btn btn-sm btn-outline-primary">
+                                    বিস্তারিত দেখুন
+                                </a>
+                            @else
+                                <span class="text-muted">তথ্য নেই</span>
+                            @endif
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5" class="text-muted">কোনো ব্যবহারকারী শর্টলিস্ট করা হয়নি।</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
 @endsection

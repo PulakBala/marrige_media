@@ -11,7 +11,6 @@ use App\Models\ViewedContact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
 class ProfileController extends Controller
 {
     //
@@ -79,76 +78,74 @@ class ProfileController extends Controller
     public function allUsers()
     {
         // Fetch all users' basic information and occupation information
-        $basicInformation = \App\Models\BasicInformation::with('occupationInformation')->limit(18)->get();  // Adjust limit as needed
+        $basicInformation = \App\Models\BasicInformation::with('occupationInformation')->paginate(6);  // Adjust limit as needed
 
         return view('profile.all-users', compact('basicInformation'));
     }
 
-// check package status after show connection 
+    // check package status after show connection
     public function checkPackageStatus(Request $request)
-{
-    $user = Auth::user();
-    $contactId = $request->contact_id; // From JS
+    {
+        $user = Auth::user();
+        $contactId = $request->contact_id;  // From JS
 
-    // Check if the user has already viewed this contact
-    $alreadyViewed = ViewedContact::where('user_id', $user->id)
-        ->where('contact_id', $contactId)
-        ->exists();
+        // Check if the user has already viewed this contact
+        $alreadyViewed = ViewedContact::where('user_id', $user->id)
+            ->where('contact_id', $contactId)
+            ->exists();
 
-    if ($alreadyViewed) {
+        if ($alreadyViewed) {
+            return response()->json([
+                'success' => true,
+                'message' => 'You have already viewed this contact before.'
+            ]);
+        }
+
+        $userPackage = UserPackage::where('user_id', $user->id)
+            ->where('is_active', 1)
+            ->with('package')
+            ->first();
+
+        if ($userPackage) {
+            if ($userPackage->expiry_date < now()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Your package has expired. Please renew your subscription.'
+                ]);
+            }
+
+            if (!$userPackage->package) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Package details not found.'
+                ]);
+            }
+
+            if ($userPackage->used_connections >= $userPackage->package->connections) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'You have used all your available connections.'
+                ]);
+            }
+
+            // ✅ Insert into viewed_contacts
+            ViewedContact::create([
+                'user_id' => $user->id,
+                'contact_id' => $contactId,
+            ]);
+
+            // ✅ Increment used_connections
+            $userPackage->increment('used_connections');
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Contact information access granted.'
+            ]);
+        }
+
         return response()->json([
-            'success' => true,
-            'message' => 'You have already viewed this contact before.'
+            'success' => false,
+            'message' => 'You do not have an active package.'
         ]);
     }
-
-    $userPackage = UserPackage::where('user_id', $user->id)
-        ->where('is_active', 1)
-        ->with('package')
-        ->first();
-
-    if ($userPackage) {
-        if ($userPackage->expiry_date < now()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Your package has expired. Please renew your subscription.'
-            ]);
-        }
-
-        if (!$userPackage->package) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Package details not found.'
-            ]);
-        }
-
-        if ($userPackage->used_connections >= $userPackage->package->connections) {
-            return response()->json([
-                'success' => false,
-                'message' => 'You have used all your available connections.'
-            ]);
-        }
-
-        // ✅ Insert into viewed_contacts
-        ViewedContact::create([
-            'user_id' => $user->id,
-            'contact_id' => $contactId,
-        ]);
-
-        // ✅ Increment used_connections
-        $userPackage->increment('used_connections');
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Contact information access granted.'
-        ]);
-    }
-
-    return response()->json([
-        'success' => false,
-        'message' => 'You do not have an active package.'
-    ]);
-}
-
-
 }

@@ -16,39 +16,39 @@
                 </div>
                 <table>
                     <tr>
-                        <td><strong>Full Name</strong></td>
+                        <td><strong>পূর্ণ নাম</strong></td>
                         <td>{{ $basicInformation->full_name }}</td>
                     </tr>
                     <tr>
-                        <td><strong>Biodata Type</strong></td>
+                        <td><strong>বায়োডাটা ধরণ</strong></td>
                         <td>{{ $basicInformation->biodata_type }}</td>
                     </tr>
                     <tr>
-                        <td><strong>Marital Status</strong></td>
+                        <td><strong>বৈবাহিক অবস্থা</strong></td>
                         <td>{{ $basicInformation->marital_status }}</td>
                     </tr>
                     <tr>
-                        <td><strong>Birth Year</strong></td>
+                        <td><strong>জন্ম বছর</strong></td>
                         <td>{{ $basicInformation->birth_year }}</td>
                     </tr>
                     <tr>
-                        <td><strong>Height</strong></td>
+                        <td><strong>উচ্চতা</strong></td>
                         <td>{{ $basicInformation->height }}</td>
                     </tr>
                     <tr>
-                        <td><strong>Complexion</strong></td>
+                        <td><strong>গায়ের রং</strong></td>
                         <td>{{ $basicInformation->complexion }}</td>
                     </tr>
                     <tr>
-                        <td><strong>Weight</strong></td>
+                        <td><strong>ওজন</strong></td>
                         <td>{{ round($basicInformation->weight) }} kg</td>
                     </tr>
                     <tr>
-                        <td><strong>Blood Group</strong></td>
+                        <td><strong> রক্তের গ্রুপ</strong></td>
                         <td>{{ $basicInformation->blood_group }}</td>
                     </tr>
                     <tr>
-                        <td><strong>Nationality</strong></td>
+                        <td><strong>জাতীয়তা</strong></td>
                         <td>{{ $basicInformation->nationality }}</td>
                     </tr>
                 </table>
@@ -77,10 +77,10 @@
 
             {{-- address  --}}
             <div class="section">
-                <h3>Address</h3>
+                <h3>ঠিকানা</h3>
                 <table>
                     <tr>
-                        <td>Permanent Address</td>
+                        <td> স্থায়ী ঠিকানা</td>
                         <td>
                             {{ $permanentAddress->country->name ?? 'N/A' }},
                             {{ $permanentAddress->state->name ?? 'N/A' }},
@@ -89,7 +89,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Present Address</td>
+                        <td> বর্তমান ঠিকানা </td>
 
                         <td>
                             {{ $presenttAddress->country->name ?? 'N/A' }},
@@ -99,7 +99,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Where did you grow up?</td>
+                        <td>আপনি কোথায় বড় হয়েছেন?</td>
                         <td>{{ $presenttAddress->grew_up ?? 'N/A' }}</td>
                     </tr>
 
@@ -108,35 +108,35 @@
 
             {{-- Educational Qualifications --}}
             <div class="section">
-                <h3>Educational Qualifications</h3>
+                <h3>শিক্ষাগত যোগ্যতা</h3>
                 <table>
 
                     <tr>
-                        <td>Your Education Method</td>
+                        <td>আপনার শিক্ষার পদ্ধতি</td>
                         <td>{{ $educationDetails->method }}</td>
                     </tr>
                     <tr>
-                        <td>Highest educational qualification</td>
+                        <td> সর্বোচ্চ শিক্ষাগত যোগ্যতা</td>
                         <td>{{ $educationDetails->higher_qualification }}</td>
                     </tr>
                     <tr>
-                        <td>SSC / Dakhil / Equivalent Passing year</td>
+                        <td>এসএসসি / দাখিল / সমমান পাসের বছর</td>
                         <td>{{ $educationDetails->passing_year }}</td>
                     </tr>
                     <tr>
-                        <td>Group</td>
+                        <td>বিভাগ</td>
                         <td>{{ $educationDetails->group_name }}</td>
                     </tr>
                     <tr>
-                        <td>Result</td>
+                        <td>ফলাফল</td>
                         <td>{{ $educationDetails->result }}</td>
                     </tr>
                     <tr>
-                        <td>Other educational qualifications</td>
+                        <td>অন্যান্য শিক্ষাগত যোগ্যতা</td>
                         <td>{{ $educationDetails->other_qualification }}</td>
                     </tr>
                     <tr>
-                        <td>Islamic educational titles</td>
+                        <td>ইসলামিক শিক্ষা সংক্রান্ত উপাধি</td>
                         <td>{{ $educationDetails->islamic_title }}</td>
                     </tr>
                 </table>
@@ -144,50 +144,50 @@
 
             {{-- family information  --}}
             <div class="section">
-                <h3>Family Information</h3>
+                <h3>পারিবারিক তথ্য</h3>
                 <table>
                     <tr>
-                        <td>Father's Name</td>
+                        <td> পিতার নাম</td>
                         <td>{{ $familyInformation->father_name ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Is your father alive?</td>
+                        <td>আপনার পিতা জীবিত আছেন কি?</td>
                         <td>{{ $familyInformation->father_alive ? 'Yes' : 'No' }}</td>
                     </tr>
                     <tr>
-                        <td>Father's Profession</td>
+                        <td>পিতার পেশা</td>
                         <td>{{ $familyInformation->father_profession ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Mother's Name</td>
+                        <td>মাতার নাম</td>
                         <td>{{ $familyInformation->mother_name ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Is your mother alive?</td>
+                        <td>আপনার মাতা জীবিত আছেন কি?</td>
                         <td>{{ $familyInformation->mother_alive ? 'Yes' : 'No' }}</td>
                     </tr>
                     <tr>
-                        <td>Description of mother's profession</td>
+                        <td>মাতার পেশার বিবরণ</td>
                         <td>{{ $familyInformation->mother_profession ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>How many brothers do you have ? </td>
+                        <td> আপনার কতজন ভাই আছেন? </td>
                         <td>{{ $familyInformation->brothers_count ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>How many sisters do you have ?</td>
+                        <td>আপনার কতজন বোন আছেন?</td>
                         <td>{{ $familyInformation->sisters_count ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Family financial Status?</td>
+                        <td>পারিবারিক আর্থিক অবস্থা?</td>
                         <td>{{ $familyInformation->financial_status ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Description of financial Condition ?</td>
+                        <td>আর্থিক অবস্থার বিবরণ</td>
                         <td>{{ $familyInformation->financial_condition ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>How ir your family's religious Condition ?</td>
+                        <td>আপনার পারিবারিক ধর্মীয় অবস্থা কেমন?</td>
                         <td>{{ $familyInformation->religious_condition ?? 'N/A' }}</td>
                     </tr>
                 </table>
@@ -195,86 +195,86 @@
 
             {{-- personal information  --}}
             <div class="section">
-                <h3>Personal Information</h3>
+                <h3>ব্যক্তিগত তথ্য</h3>
                 <table>
                     <tr>
-                        <td>What kind of clothes do you have usually wear outside the house?</td>
+                        <td>আপনি সাধারণত ঘরের বাইরে কী ধরনের পোশাক পরেন?</td>
                         <td>{{ $personalInformation->clothes ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Do you have beard according to sunnah ? Since when? </td>
+                        <td>আপনার কি সুন্নতি অনুযায়ী দাড়ি আছে? কবে থেকে? </td>
                         <td>{{ $personalInformation->beard ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Do you pray five times a day? Since when ?</td>
+                        <td> আপনি কি দিনে পাঁচ ওয়াক্ত নামাজ পড়েন? কবে থেকে?</td>
                         <td>{{ $personalInformation->prayer ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Do you comply with mahram / non-mahram ? </td>
+                        <td> আপনি কি মাহরাম / গায়রে মাহরাম মেনে চলেন? </td>
                         <td>{{ $personalInformation->mahram ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Are you able to recite the Quran correctly ?</td>
+                        <td>আপনি কি কোরআন সঠিকভাবে তিলাওয়াত করতে পারেন?</td>
                         <td>{{ $personalInformation->quran_recitation ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Which Fiqh do you follow ?</td>
+                        <td> আপনি কোন ফিকাহ অনুসরণ করেন?</td>
                         <td>{{ $personalInformation->fiqh ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Do you watch or listen to dramas / movies / serials / songs? </td>
+                        <td>আপনি কি নাটক / সিনেমা / সিরিয়াল / গান দেখেন বা শোনেন? </td>
                         <td>{{ $personalInformation->media ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Do you have any mental or physical diseases ?</td>
+                        <td>আপনার কি কোনো মানসিক বা শারীরিক রোগ আছে?</td>
                         <td>{{ $personalInformation->diseases ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Are you involved in any spcieal deen Work</td>
+                        <td>আপনি কি কোনো বিশেষ দ্বীনি কাজের সাথে জড়িত?k</td>
                         <td>{{ $personalInformation->deen_work ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Yor ideas or beliefs about the shrine(Majar) ?</td>
+                        <td> মাজার সম্পর্কে আপনার ধারণা বা বিশ্বাস কী?</td>
                         <td>{{ $personalInformation->shrine_beliefs ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Islamic Books you have read</td>
+                        <td>আপনি কোন ইসলামি বই পড়েছেন</td>
                         <td>{{ $personalInformation->islamic_books ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Writes the name of at least 3 islamic scholars of your choice</td>
+                        <td>আপনার পছন্দের অন্তত তিনজন ইসলামি আলেমের নাম লিখুন</td>
                         <td>{{ $personalInformation->islamic_scholars ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Select the category is appllicable to you</td>
+                        <td>আপনার জন্য প্রযোজ্য বিভাগটি নির্বাচন করুন</td>
                         <td>{{ $personalInformation->category ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>What about your hobbies , likes and dislikes, tastes, dreams, and so on.</td>
+                        <td>আপনার শখ, পছন্দ-অপছন্দ, রুচি, স্বপ্ন ইত্যাদি সম্পর্কে কিছু বলুন</td>
                         <td>{{ $personalInformation->hobbies ?? 'N/A' }}</td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                         <td>Goroom's moblie number</td>
                         <td>{{ $personalInformation->mobile ?? 'N/A' }}</td>
-                    </tr>
+                    </tr> --}}
                     {{-- <tr><td>Photo</td><td>{{ $personalInformation->photo ?? 'N/A' }}</td></tr> --}}
                 </table>
             </div>
 
             {{-- occupation information  --}}
             <div class="section">
-                <h3>Occupation Information</h3>
+                <h3>পেশাগত তথ্য</h3>
                 <table>
                     <tr>
-                        <td>Occupation</td>
+                        <td>পেশা</td>
                         <td>{{ $occupationInformation->occupation ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Description of profession</td>
+                        <td>পেশার বিবরণ</td>
                         <td>{{ $occupationInformation->description ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Monthly Income</td>
+                        <td>মাসিক আয়</td>
                         <td>{{ $occupationInformation->monthly_income ?? 'N/A' }}</td>
                     </tr>
                 </table>
@@ -282,34 +282,34 @@
 
             {{-- Marrige infromation  --}}
             <div class="section">
-                <h3>Marriage Information</h3>
+                <h3>বিবাহ সম্পর্কিত তথ্য</h3>
                 <table>
                     <tr>
-                        <td>Do your guardians agree to your marriage ?</td>
+                        <td>আপনার অভিভাবকরা কি আপনার বিয়েতে সম্মত?</td>
                         <td>{{ $marriageInformation->guardians_agree ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Will you be able to keep your wife in the veli after marriage ? </td>
+                        <td>আপনি কি বিয়ের পর আপনার স্ত্রীকে পর্দার মধ্যে রাখতে পারবেন? </td>
                         <td>{{ $marriageInformation->keep_veil ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Would you like to allorw your wife to study after marriage ? </td>
+                        <td>আপনি কি বিয়ের পর আপনার স্ত্রীকে পড়াশোনা করার অনুমতি দিতে চান?</td>
                         <td>{{ $marriageInformation->allow_study ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Would you like to allow your wife to do any job after marriage ? </td>
+                        <td>আপনি কি বিয়ের পর আপনার স্ত্রীকে কোনো চাকরি করতে দিতে চান?</td>
                         <td>{{ $marriageInformation->allow_job ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Where will you live with youir wife after marriage ? </td>
+                        <td>বিয়ের পর আপনি আপনার স্ত্রীকে নিয়ে কোথায় থাকবেন?</td>
                         <td>{{ $marriageInformation->living_arrangement ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Would you or your family expect any figt from the brides's family ?</td>
+                        <td>আপনি বা আপনার পরিবার কি কনের পরিবার থেকে কোনো উপহার আশা করেন?</td>
                         <td>{{ $marriageInformation->expect_gift ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Why are you fetting married ? What are your thoughts on marriage ? </td>
+                        <td> আপনি কেন বিয়ে করছেন? বিয়ে সম্পর্কে আপনার চিন্তাভাবনা কী? </td>
                         <td>{{ $marriageInformation->marriage_thoughts ?? 'N/A' }}</td>
                     </tr>
                 </table>
@@ -317,42 +317,42 @@
 
             {{-- expected partenr infromation  --}}
             <div class="section">
-                <h3>Expected Partner Information</h3>
+                <h3> প্রত্যাশিত জীবনসঙ্গীর তথ্য </h3>
                 <table>
                     <tr>
-                        <td>Age From</td>
+                        <td>বয়স (কমপক্ষে)</td>
                         <td>{{ $expectedPartner->age_from ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Age To</td>
+                        <td>বয়স (সর্বোচ্চ)</td>
                         <td>{{ $expectedPartner->age_to ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Complexion</td>
+                        <td>গায়ের রং</td>
                         <td>{{ $expectedPartner->complexion ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Height</td>
+                        <td>উচ্চতা</td>
                         <td>{{ $expectedPartner->height ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Educational Qualification</td>
+                        <td>শিক্ষাগত যোগ্যতা</td>
                         <td>{{ $expectedPartner->educational_qualification ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>District</td>
+                        <td>জেলা</td>
                         <td>{{ $expectedPartner->district ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Marital Status</td>
+                        <td>বৈবাহিক অবস্থা</td>
                         <td>{{ $expectedPartner->marital_status ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Financial Condition</td>
+                        <td> আর্থিক অবস্থা</td>
                         <td>{{ $expectedPartner->financial_condition ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Expected Qualities or attributes of your life partner</td>
+                        <td>আপনার প্রত্যাশিত জীবনসঙ্গীর গুণাবলী বা বৈশিষ্ট্য</td>
                         <td>{{ $expectedPartner->expected_qualities ?? 'N/A' }}</td>
                     </tr>
                 </table>
@@ -360,19 +360,18 @@
 
             {{-- pledge information  --}}
             <div class="section">
-                <h3>Pledge Information</h3>
+                <h3>অঙ্গীকার সংক্রান্ত তথ্য</h3>
                 <table>
                     <tr>
-                        <td>Do your parents know that you are submitting biodata to the this website ?</td>
+                        <td>আপনি কি এই ওয়েবসাইটে বায়োডাটা দিচ্ছেন তা আপনার বাবা-মা জানেন কি?</td>
                         <td>{{ $pledge->parents_know ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>By Allah, testify that all the information given is true.</td>
+                        <td>আল্লাহর কসম করে বলুন, প্রদত্ত সমস্ত তথ্য সঠিক।</td>
                         <td>{{ $pledge->testify_truth ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>If you provide any false infromation, this website will not take any responsibility for the
-                            conventional law and the hereafter . Do you agree? </td>
+                        <td>আপনি যদি কোনো মিথ্যা তথ্য প্রদান করেন, তবে এই ওয়েবসাইট পার্থিব আইন এবং পরকালের দায়ভার গ্রহণ করবে না। আপনি কি এতে সম্মত? </td>
                         <td>{{ $pledge->agree ?? 'N/A' }}</td>
                     </tr>
                 </table>
@@ -380,13 +379,14 @@
 
             {{-- contact information --}}
             <div class="section w-full">
-                <h3>Contact Information</h3>
+                <h3>যোগাযোগের তথ্য</h3>
 
                 {{-- button view contact information  --}}
 
                 <div class="text-center mt-5">
                     <button id="viewContactBtn" class="btn btn-outline-dark px-4 p-2 rounded-pill fw-semibold"
-                        onclick="viewContactInformation()">View Contact Information</button>
+                        onclick="viewContactInformation()">যোগাযোগের তথ্য দেখুন </button>
+                        <p class="mt-3 text-muted">যে যোগাযোগের তথ্য দেখার জন্য আপনাকে সর্বনিম্ন 1 টি কানেকশন থাকতে হবে।</p>
                 </div>
 
 
@@ -396,15 +396,15 @@
                         <td style="width: 50%;">{{ $contact->groom_name ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td style="width: 50%;">Guardian Mobile</td>
+                        <td style="width: 50%;">অভিভাবকের মোবাইল নম্বর</td>
                         <td style="width: 50%;">{{ $contact->guardian_mobile ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td style="width: 50%;">Relationship with Guardian</td>
+                        <td style="width: 50%;">অভিভাবকের সাথে সম্পর্ক</td>
                         <td style="width: 50%;">{{ $contact->relationship_with_guardian ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td style="width: 50%;">Guardian Email</td>
+                        <td style="width: 50%;">অভিভাবকের ইমেইল </td>
                         <td style="width: 50%;">{{ $contact->guardian_email ?? 'N/A' }}</td>
                     </tr>
                 </table>

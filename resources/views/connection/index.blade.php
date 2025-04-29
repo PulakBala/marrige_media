@@ -7,60 +7,73 @@
 
             @foreach ($packages as $package)
                 <div class="col-md-4 mb-2">
-                    <div class="card shadow rounded-4 border-0"
-                        style="background: linear-gradient(to bottom right, rgba(255,255,255,0.9), rgba(230,245,255,0.9));">
-                        <div class="card-body mt-2 text-cneter" style="margin-left: 10px; padding: 0;">
 
-                            <div style="margin-left: 10px">
-                                <h3 class="card-title text-uppercase" style="font-weight: 700; font-size: 1.25rem;">
-                                    {{ $package->name }} <span class="text-muted"
-                                        style="margin-left: 20px; font-size:16px;">{{ $package->months }} MONTHS</span></h3>
+                        <div class="card-body shadow rounded-4 bg-white p-4" style="margin-left: 10px;">
 
-                                <p class="card-text mb-2 text-uppercase" style="font-size: 1rem; color: #555;">discount
-                                    {{ $package->discount }}</p>
+                            <!-- Package Title -->
+                            <h3 class="card-title text-uppercase mb-3 d-flex align-items-center justify-content-between" style="font-weight: 700; font-size: 1.5rem; color: #333;">
+                                {{ $package->name }}
+                                <span class="text-muted fw-medium" style="font-size: 1rem;">{{ $package->months }} মাস</span>
+                            </h3>
 
-                                <p class="card-text mb-3 text-uppercase"
-                                    style="font-size: 1.25rem; font-weight: 600; color: #333;">PACKAGE PRICE: <span
-                                        style="color: #007bff;">${{ $package->price }}</span></p>
-                                <p class="card-text mb-2 text-uppercase" style="font-size: 1rem; color: #555;"> <i
-                                        class="fas fa-check bold" style="color: #2ebb55"></i> {{ $package->feature_1 }}</p>
-                                <p class="card-text mb-2 text-uppercase" style="font-size: 1rem; color: #555;"> <i
-                                        class="fas fa-check" style="color: #2ebb55"></i> VIEW UPTO
-                                    {{ $package->connections }} CONTACT NUMBERS</p>
-                                {{-- <p class="card-text mb-2" style="font-size: 1rem; color: #555;">{{ $package->feature_2 }}</p> --}}
-                                <p class="card-text mb-2 text-uppercase" style="font-size: 1rem; color: #555;"> <i
-                                        class="fas fa-check" style="color: #2ebb55"></i> {{ $package->feature_3 }}</p>
-                                <p class="card-text mb-2 text-uppercase" style="font-size: 1rem; color: #555;"> <i
-                                        class="fas fa-check" style="color: #2ebb55"></i> {{ $package->feature_4 }}</p>
+                            <!-- Discount -->
+                            <p class="text-success fw-semibold mb-2" style="font-size: 1rem;">
+                                {{ $package->discount }}
+                            </p>
 
-                            </div>
+                            <!-- Price -->
+                            <p class="mb-3" style="font-size: 1.2rem; font-weight: 600; color: #444;">
+                                প্যাকেজ মূল্য:
+                                <span style="color: #2ebb55; font-size: 1.7rem; font-weight: 700;">
+                                    <span style="font-size: 1.6rem;">৳</span> {{ $package->price }}
+                                </span>
+                            </p>
+
+                            <!-- Features -->
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2">
+                                    <i class="fas fa-check-circle me-2" style="color: #2ebb55;"></i>
+                                    {{ $package->feature_1 }}
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check-circle me-2" style="color: #2ebb55;"></i>
+                                    আপনি {{ $package->connections }} জন মানুষের যোগাযোগের তথ্য দেখতে পারবেন।
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check-circle me-2" style="color: #2ebb55;"></i>
+                                    {{ $package->feature_3 }}
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check-circle me-2" style="color: #2ebb55;"></i>
+                                    {{ $package->feature_4 }}
+                                </li>
+                            </ul>
 
                             <!-- Button Section -->
-                            <!-- Button Section -->
-                            <div class="text-center mt-3 mb-3">
-
-
+                            <div class="d-flex justify-content-between align-items-center pt-3">
                                 <button onclick="purchasePackage({{ $package->id }})"
-                                    class="btn btn-sm btn-outline-dark px-2 rounded-pill fw-semibold text-uppercase">connection
+                                    class="btn btn-outline-primary rounded-pill fw-bold text-uppercase px-4">
+                                    কানেকশন
                                 </button>
 
+                                <div class="d-flex gap-2">
+                                    <a href="{{ route('package.edit', $package->id) }}"
+                                        class="btn btn-warning rounded-pill px-3 fw-bold" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
 
-                                <a href="{{ route('package.edit', $package->id) }}"
-                                    class="btn btn-sm btn-warning px-4 rounded-pill fw-semibold" title="Edit">
-                                    <i class="fas fa-edit"></i> <!-- Edit icon -->
-                                </a>
-                                <form class="pt-2" action="{{ route('package.delete', $package->id) }}" method="POST"
-                                    style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger px-4 rounded-pill fw-semibold"
-                                        title="Delete">
-                                        <i class="fas fa-trash"></i> <!-- Delete icon -->
-                                    </button>
-                                </form>
+                                    <form action="{{ route('package.delete', $package->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger rounded-pill px-3 fw-bold" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+
                 </div>
             @endforeach
         </div>

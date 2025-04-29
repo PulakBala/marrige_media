@@ -1,11 +1,4 @@
 <?php
-
-// use Illuminate\Support\Facades\Route;
-
-// Route::get('/', function () {
-// return view('welcome');
-// });
-
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConnectionController;
 use App\Http\Controllers\DashboardController;
@@ -14,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SettingsControllers;
 use App\Livewire\LocationDropdown;
+use App\Http\Controllers\SupportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,11 +25,6 @@ Route::post('/', [UserController::class, 'register'])->name('register');
 
 // Logout route added here
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-// Login route added here
-// Route::get('/login', function () {
-//     return view('auth.login'); // Login view ta return kora
-// })->name('login');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -90,6 +79,9 @@ Route::middleware(['auth'])->group(function () {
     //ignore list view
     Route::get('/ignorelist', [UserController::class, 'ignorelistView'])->name('user.ignorelist');
 
+    // Support and Help Route
+    Route::get('/support', [SupportController::class, 'index'])->name('support.help');
+
     // ... existing code ...
 });
 
@@ -102,15 +94,4 @@ Route::prefix('profile')->group(function () {
     Route::get('/user-profile', [ProfileController::class, 'user'])->name('profile.user-profile');
     // Add this route
     Route::get('/contacts/viewed', [ConnectionController::class, 'viewedContacts'])->name('profile.contacts/viewed');
-
-
-    //short list
-    // Route::post('/shortlist', [UserController::class, 'shortlist'])->name('user.shortlist');
-
-
-
-
-    // Route::get('/security', [ProfileController::class, 'security'])->name('profile.security');
-    // Route::get('/preferences', [ProfileController::class, 'preferences'])->name('profile.preferences');
-    // আরও রাউট যোগ করতে পারেন
 });

@@ -23,6 +23,7 @@ body{
 }
 .sidebar{
     color: black;
+    min-width: 300px;
     /* background-color: #2ebb55; */
 }
 
@@ -52,10 +53,7 @@ body{
     border-left: 4px solid #2ebb55; /* Optional for highlight */
 }
 
-/* Add this new class for when sidebar is present */
-.has-sidebar .main-content {
-    margin-left: 250px; /* Sidebar width */
-}
+
 
 
 
@@ -153,9 +151,12 @@ body{
 @media (max-width: 991.98px) {
     #sidebar {
         position: fixed;
-        left: -250px;
+        left: -300px;
         z-index: 1000;
         transition: 0.3s;
+        background-color: #ffffff; /* White background */
+        max-height: calc(100vh - 56px);
+        overflow-y: auto; /* Enable vertical scrolling */
     }
 
     #sidebar.show-sidebar {
