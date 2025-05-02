@@ -90,7 +90,7 @@ body{
   }
   .sidebar-content{
     padding: 20px;
-    background-color: #5c2b8c;
+    background-color: #2ebb55;
   }
   .sidebars table {
     width: 100%;
@@ -105,23 +105,33 @@ body{
     flex: 2 1 600px;
     padding: 20px;
   }
+
+
   .section {
     margin-bottom: 30px;
   }
   .section h3 {
-    border-bottom: 2px solid #5c2b8c;
+    border-bottom: 2px solid #2ebb55;
     padding-bottom: 5px;
     margin-bottom: 15px;
-    color: #5c2b8c;
+    color: #2ebb55;
   }
   .section table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
   }
   .section td {
-    padding: 8px;
-    border: 1px solid #ddd;
+    padding: 15px 10px;
+    border: 2px solid #ddd;
   }
+
+
+
+
+
+
+
   .button {
     width: 50%;
     background: linear-gradient(45deg, #5c2b8c, #e84d9a);

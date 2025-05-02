@@ -2,11 +2,12 @@
 @section('content')
     <div class="containers min-vh-100 py-4">
 
+        {{-- user profiel sidebar information  --}}
         <div class="sidebars">
 
             <div class="sidebar-content">
                 <div class="avatar">
-                    @if(trim(strtolower($basicInformation->biodata_type)) === 'male')
+                    @if (trim(strtolower($basicInformation->biodata_type)) === 'male')
                         <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="Male Avatar">
                     @elseif(trim(strtolower($basicInformation->biodata_type)) === 'female')
                         <img src="https://cdn-icons-png.flaticon.com/512/4140/4140047.png" alt="Female Avatar">
@@ -21,7 +22,16 @@
                     </tr>
                     <tr>
                         <td><strong>বায়োডাটা ধরণ</strong></td>
-                        <td>{{ $basicInformation->biodata_type }}</td>
+                        {{-- <td>{{ $basicInformation->biodata_type }}</td> --}}
+                        <td>
+                            @if (trim(strtolower($basicInformation->biodata_type)) === 'male')
+                                পুরুষ
+                            @elseif(trim(strtolower($basicInformation->biodata_type)) === 'female')
+                                পাত্রী
+                            @else
+                                {{ $basicInformation->biodata_type }}
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <td><strong>বৈবাহিক অবস্থা</strong></td>
@@ -41,7 +51,7 @@
                     </tr>
                     <tr>
                         <td><strong>ওজন</strong></td>
-                        <td>{{ round($basicInformation->weight) }} kg</td>
+                        <td>{{ round($basicInformation->weight) }} কেজি</td>
                     </tr>
                     <tr>
                         <td><strong> রক্তের গ্রুপ</strong></td>
@@ -54,18 +64,20 @@
                 </table>
             </div>
             <div class="mt-3">
-                <div class="d-flex justify-content-center gap-4 md-gap-5">
-                    <a href="#" class="btn btn-outline-primary px-2 md-px-4" onclick="shortlistUser({{ $basicInformation->user_id }})">
-                        <i class="fas fa-check"></i> SHORTLIST
-                    </a>
-                    <a href="#" class="btn btn-outline-danger px-2 md-px-4" onclick="ignoreUser({{ $basicInformation->user_id }})">
-                        <i class="fas fa-times"></i> IGNORE
-                    </a>
+                <div class="d-flex justify-content-center gap-3">
+                    <button class="btn btn-primary px-4 py-2 rounded-pill"
+                        onclick="shortlistUser({{ $basicInformation->user_id }})">
+                        <i class="fas fa-check me-2"></i> শর্টলিস্ট
+                    </button>
+                    <button class="btn btn-danger px-4 py-2 rounded-pill"
+                        onclick="ignoreUser({{ $basicInformation->user_id }})">
+                        <i class="fas fa-times me-2"></i> ইগনোর
+                    </button>
                 </div>
-                <div class="d-flex justify-content-center">
-                    <a href="#" class=" d-flex justify-content-center mt-3 button" >
-                        <i class="fas fa-link"></i> Copy Biodata Link
-                    </a>
+                <div class="d-flex justify-content-center mt-3">
+                    <button class="btn btn-outline-dark px-4 py-2 rounded-pill">
+                        <i class="fas fa-link me-2"></i> কপি বায়োডাটা
+                    </button>
                 </div>
             </div>
         </div>
@@ -152,7 +164,7 @@
                     </tr>
                     <tr>
                         <td>আপনার পিতা জীবিত আছেন কি?</td>
-                        <td>{{ $familyInformation->father_alive ? 'Yes' : 'No' }}</td>
+                        <td>{{ $familyInformation->father_alive ? 'হ্যাঁ' : 'না' }}</td>
                     </tr>
                     <tr>
                         <td>পিতার পেশা</td>
@@ -164,7 +176,7 @@
                     </tr>
                     <tr>
                         <td>আপনার মাতা জীবিত আছেন কি?</td>
-                        <td>{{ $familyInformation->mother_alive ? 'Yes' : 'No' }}</td>
+                        <td>{{ $familyInformation->mother_alive ? 'হ্যাঁ' : 'না' }}</td>
                     </tr>
                     <tr>
                         <td>মাতার পেশার বিবরণ</td>
@@ -286,15 +298,15 @@
                 <table>
                     <tr>
                         <td>আপনার অভিভাবকরা কি আপনার বিয়েতে সম্মত?</td>
-                        <td>{{ $marriageInformation->guardians_agree ?? 'N/A' }}</td>
+                        <td>{{ $marriageInformation->guardians_agree ? 'হ্যাঁ' : 'না' }}</td>
                     </tr>
                     <tr>
                         <td>আপনি কি বিয়ের পর আপনার স্ত্রীকে পর্দার মধ্যে রাখতে পারবেন? </td>
-                        <td>{{ $marriageInformation->keep_veil ?? 'N/A' }}</td>
+                        <td>{{ $marriageInformation->keep_veil ? 'হ্যাঁ' : 'না' }}</td>
                     </tr>
                     <tr>
                         <td>আপনি কি বিয়ের পর আপনার স্ত্রীকে পড়াশোনা করার অনুমতি দিতে চান?</td>
-                        <td>{{ $marriageInformation->allow_study ?? 'N/A' }}</td>
+                        <td>{{ $marriageInformation->allow_study ? 'হ্যাঁ' : 'না' }}</td>
                     </tr>
                     <tr>
                         <td>আপনি কি বিয়ের পর আপনার স্ত্রীকে কোনো চাকরি করতে দিতে চান?</td>
@@ -364,21 +376,22 @@
                 <table>
                     <tr>
                         <td>আপনি কি এই ওয়েবসাইটে বায়োডাটা দিচ্ছেন তা আপনার বাবা-মা জানেন কি?</td>
-                        <td>{{ $pledge->parents_know ?? 'N/A' }}</td>
+                        <td>{{ $pledge->parents_know ? 'হ্যাঁ' : 'না' }}</td>
                     </tr>
                     <tr>
                         <td>আল্লাহর কসম করে বলুন, প্রদত্ত সমস্ত তথ্য সঠিক।</td>
-                        <td>{{ $pledge->testify_truth ?? 'N/A' }}</td>
+                        <td>{{ $pledge->testify_truth ? 'হ্যাঁ' : 'না' }}</td>
                     </tr>
                     <tr>
-                        <td>আপনি যদি কোনো মিথ্যা তথ্য প্রদান করেন, তবে এই ওয়েবসাইট পার্থিব আইন এবং পরকালের দায়ভার গ্রহণ করবে না। আপনি কি এতে সম্মত? </td>
-                        <td>{{ $pledge->agree ?? 'N/A' }}</td>
+                        <td>আপনি যদি কোনো মিথ্যা তথ্য প্রদান করেন, তবে এই ওয়েবসাইট পার্থিব আইন এবং পরকালের দায়ভার গ্রহণ
+                            করবে না। আপনি কি এতে সম্মত? </td>
+                        <td>{{ $pledge->agree ? 'হ্যাঁ' : 'না' }}</td>
                     </tr>
                 </table>
             </div>
 
             {{-- contact information --}}
-            <div class="section w-full">
+            <div class="section">
                 <h3>যোগাযোগের তথ্য</h3>
 
                 {{-- button view contact information  --}}
@@ -386,87 +399,105 @@
                 <div class="text-center mt-5">
                     <button id="viewContactBtn" class="btn btn-outline-dark px-4 p-2 rounded-pill fw-semibold"
                         onclick="viewContactInformation()">যোগাযোগের তথ্য দেখুন </button>
-                        <p class="mt-3 text-muted">যে যোগাযোগের তথ্য দেখার জন্য আপনাকে সর্বনিম্ন 1 টি কানেকশন থাকতে হবে।</p>
+                    <p class="mt-3 " style="color: #2ebb55">যোগাযোগের তথ্য দেখার জন্য আপনাকে সর্বনিম্ন 1 টি কানেকশন থাকতে
+                        হবে।</p>
                 </div>
 
 
-                <table class="mt-5 border" id="contactInfo" data-contact-id="{{ $contact->id ?? '' }}" style="display:none;">
+                <table class="mt-5 w-100" id="contactInfo" data-contact-id="{{ $contact->id ?? '' }}"
+                    style="display:none; ">
                     <tr>
-                        <td style="width: 100%;">Groom Name</td>
-                        <td style="width: 50%;">{{ $contact->groom_name ?? 'N/A' }}</td>
+                        <td>নাম</td>
+                        <td>{{ $contact->groom_name ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td style="width: 50%;">অভিভাবকের মোবাইল নম্বর</td>
-                        <td style="width: 50%;">{{ $contact->guardian_mobile ?? 'N/A' }}</td>
+                        <td>অভিভাবকের মোবাইল নম্বর</td>
+                        <td>{{ $contact->guardian_mobile ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td style="width: 50%;">অভিভাবকের সাথে সম্পর্ক</td>
-                        <td style="width: 50%;">{{ $contact->relationship_with_guardian ?? 'N/A' }}</td>
+                        <td>অভিভাবকের সাথে সম্পর্ক</td>
+                        <td>{{ $contact->relationship_with_guardian ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td style="width: 50%;">অভিভাবকের ইমেইল </td>
-                        <td style="width: 50%;">{{ $contact->guardian_email ?? 'N/A' }}</td>
+                        <td>অভিভাবকের ইমেইল </td>
+                        <td>{{ $contact->guardian_email ?? 'N/A' }}</td>
                     </tr>
                 </table>
             </div>
+
         </div>
     </div>
 
-{{-- view hide contact information js code  --}}
-<script>
-    function viewContactInformation() {
-        const contactId = document.getElementById('contactInfo').getAttribute('data-contact-id');
+    {{-- view hide contact information js code  --}}
+    <script>
+        function viewContactInformation() {
+            const contactId = document.getElementById('contactInfo').getAttribute('data-contact-id');
 
-          // Check if contactId is null or empty
-    if (!contactId) {
-        alert('Contact ID cannot be null. Please ensure that there are contacts available.');
-        return; // Exit the function if contactId is not valid
-    }
-
-        axios.post('/check-package-status', {
-            contact_id: contactId
-        })
-        .then(response => {
-            if (response.data.success) {
-                document.getElementById('contactInfo').style.display = 'block';
-            } else {
-                alert(response.data.message);
+            if (!contactId) {
+                alert('Contact ID cannot be null. Please ensure that there are contacts available.');
+                return;
             }
-        })
-        .catch(error => {
-            console.error("There was an error checking package status:", error);
-        });
-    }
-</script>
 
-{{-- shortlist and ignore list add js code  --}}
+            axios.post('/check-package-status', {
+                    contact_id: contactId
+                })
+                .then(response => {
+                    if (response.data.success) {
+                        const contactTable = document.getElementById('contactInfo');
+                        contactTable.style.display = 'table';
+                        contactTable.classList.add('w-100');
+                    } else {
+                        alert(response.data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("There was an error checking package status:", error);
+                });
+        }
+    </script>
 
-<script>
-    function shortlistUser(userId) {
-        axios.post('/shortlist', { user_id: userId })
-            .then(response => {
-                if (response.data.success) {
-                    alert(response.data.message);
-                    // এখানে UI আপডেট করুন
-                }
-            })
-            .catch(error => {
-                console.error("There was an error shortlisting the user:", error);
-            });
-    }
+    {{-- shortlist and ignore list add js code  --}}
 
-    function ignoreUser(userId) {
-        axios.post('/ignore', { user_id: userId })
-            .then(response => {
-                if (response.data.success) {
-                    alert(response.data.message);
-                    // এখানে UI আপডেট করুন
-                }
-            })
-            .catch(error => {
-                console.error("There was an error ignoring the user:", error);
-            });
-    }
-</script>
+    <script>
+        function shortlistUser(userId) {
+            axios.post('/shortlist', {
+                    user_id: userId
+                })
+                .then(response => {
+                    if (response.data.success) {
+                        alert(response.data.message);
+                        // এখানে UI আপডেট করুন
+                    }
+                })
+                .catch(error => {
+                    console.error("There was an error shortlisting the user:", error);
+                });
+        }
 
+        function ignoreUser(userId) {
+            axios.post('/ignore', {
+                    user_id: userId
+                })
+                .then(response => {
+                    if (response.data.success) {
+                        alert(response.data.message);
+                        // এখানে UI আপডেট করুন
+                    }
+                })
+                .catch(error => {
+                    console.error("There was an error ignoring the user:", error);
+                });
+        }
+    </script>
+
+    <style>
+        /* Add this CSS to your stylesheet */
+        .sidebar-content table td,
+        .section table td {
+            font-size: 0.9rem;
+            /* Adjust this value to make text smaller or larger */
+            padding: 0.5rem;
+            /* Optional: Adjust cell padding */
+        }
+    </style>
 @endsection
