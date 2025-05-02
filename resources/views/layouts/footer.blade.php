@@ -4,7 +4,7 @@
         <div class="row text-center text-md-start">
             <!-- Logo and Description -->
             <div class="col-md-5 mb-4">
-                <h4 class="fw-bold">Matrimony</h4>
+                <h4 class="fw-bold">দ্বীনিনিকাহ</h4>
                 <p class="text-white-50">
                     আপনার জীবনের সেরা জীবনসঙ্গী খুঁজে নিতে আমাদের বিশ্বস্ত প্ল্যাটফর্ম ব্যবহার করুন। নিরাপদ, নির্ভরযোগ্য ও দ্রুত!
                 </p>
@@ -34,7 +34,7 @@
             <!-- Contact Info -->
             <div class="col-md-3 mb-4">
                 <h5 class="fw-semibold">যোগাযোগ</h5>
-                <p class="mb-1 text-white-50"><i class="bi bi-envelope-fill me-2"></i>info@matrimony.com</p>
+                <p class="mb-1 text-white-50"><i class="bi bi-envelope-fill me-2"></i>info@deeninikah.com</p>
                 <p class="mb-1 text-white-50"><i class="bi bi-telephone-fill me-2"></i>+880 1234-567890</p>
                 <div class="mt-3">
                     <a href="#" class="text-white-50 me-3"><i class="fab fa-facebook fa-lg"></i></a>

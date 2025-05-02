@@ -12,9 +12,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     // Fetch the first 9 users' basic information
-    $basicInformation = \App\Models\BasicInformation::limit(9)->get();  // Get first 9 users
+    $basicInformation = \App\Models\BasicInformation::limit(12)->get();  // Get first 9 users
     return view('home', compact('basicInformation'));
 })->name('home');
+
+
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -95,3 +97,6 @@ Route::prefix('profile')->group(function () {
     // Add this route
     Route::get('/contacts/viewed', [ConnectionController::class, 'viewedContacts'])->name('profile.contacts/viewed');
 });
+
+//home page data filter
+Route::post('/search', [ProfileController::class, 'search'])->name('search.profiles');

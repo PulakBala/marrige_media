@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\BasicInformation;  // Add this line
 use App\Models\FamilyInformation;
 use App\Models\OccupationInformation;
 use App\Models\PermanentAddress;
@@ -148,4 +148,62 @@ class ProfileController extends Controller
             'message' => 'You do not have an active package.'
         ]);
     }
+
+    // home page basicinformation data filtering
+
+    public function search(Request $request)
+    {
+        try {
+            // Debug: Check if we can get any data at all
+            $allData = \App\Models\BasicInformation::all();
+            \Log::info('Total records in database:', ['count' => $allData->count()]);
+
+            // Debug: Check if view exists
+            if (!view()->exists('partials.profile_cards')) {
+                \Log::error('View file not found: partials.profile_cards');
+                return response()->json(['html' => 'View file not found'], 500);
+            }
+
+            $query = \App\Models\BasicInformation::query();
+
+            if ($request->filled('biodata_type')) {
+                $query->where('biodata_type', $request->biodata_type);
+            }
+
+            if ($request->filled('marital_status')) {
+                $query->where('marital_status', $request->marital_status);
+            }
+
+            if ($request->filled('nationality')) {
+                $query->where('nationality', $request->nationality);
+            }
+
+            $results = $query->get();
+            \Log::info('Search results:', [
+                'count' => $results->count(),
+                'first_record' => $results->first()
+            ]);
+
+            if ($request->wantsJson()) {
+                $html = view('partials.profile_cards', ['basicInformation' => $results])->render();
+                \Log::info('Generated HTML length:', ['length' => strlen($html)]);
+                return response()->json(['html' => $html]);
+            }
+
+            return view('home', ['basicInformation' => $results]);
+        } catch (\Exception $e) {
+            \Log::error('Search error: ' . $e->getMessage(), [
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            if ($request->wantsJson()) {
+                return response()->json([
+                    'message' => 'একটি ত্রুটি ঘটেছে: ' . $e->getMessage()
+                ], 500);
+            }
+
+            return back()->with('error', 'একটি ত্রুটি ঘটেছে');
+        }
+    }
+
 }

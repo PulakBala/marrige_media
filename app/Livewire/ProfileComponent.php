@@ -249,16 +249,30 @@ class ProfileComponent extends Component
         $this->showForm = true;
     }
 
+    // next step functions
+
+
     public function nextStep()
     {
-        $this->validateCurrentStep();
+        try {
+            $this->validateCurrentStep();
 
-
-
-        if ($this->currentStep < $this->totalSteps) {
-            $this->currentStep++;
+            if ($this->currentStep < $this->totalSteps) {
+                $this->currentStep++;
+            }
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            Log::error('Validation failed in step ' . $this->currentStep, [
+                'errors' => $e->errors(),
+                'data' => [
+                    'basicInfo' => $this->basicInfo,
+                    'currentStep' => $this->currentStep
+                ]
+            ]);
+            throw $e;
         }
     }
+
+
 
     public function previousStep()
     {
