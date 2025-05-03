@@ -22,12 +22,11 @@
             </div>
 
             <div class="col-md-2 mb-4">
-                <h5 class="fw-semibold">দ্রুত লিংক</h5>
+                <h5 class="fw-semibold">গোপনীয়তা নীতি</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-white-50 text-decoration-none">হোম</a></li>
-                    <li><a href="#" class="text-white-50 text-decoration-none">প্যাকেজসমূহ</a></li>
-                    <li><a href="#" class="text-white-50 text-decoration-none">যোগাযোগ</a></li>
-                    <li><a href="#" class="text-white-50 text-decoration-none">প্রশ্নোত্তর</a></li>
+                    <li><a href="{{ route('privacy') }}" class="text-white-50 text-decoration-none">গোপনীয়তা নীতি</a></li>
+                    <li><a href="{{ route('terms') }}" class="text-white-50 text-decoration-none">শর্তাবলী</a></li>
+                    <li><a href="{{ route('refund') }}" class="text-white-50 text-decoration-none">রিফান্ড নীতি</a></li>
                 </ul>
             </div>
 
@@ -46,7 +45,7 @@
 
         <!-- Footer Bottom -->
         <div class="border-top border-secondary pt-3 mt-4 text-center text-white-50">
-            &copy; 2024 Matrimony | সকল স্বত্ব সংরক্ষিত
+            &copy; 2025 দ্বীনিনিকাহ | সকল স্বত্ব সংরক্ষিত
         </div>
     </div>
 </footer>

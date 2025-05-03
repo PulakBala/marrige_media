@@ -12,9 +12,14 @@ class IgnoredUser extends Model
     // এই টেবিলের জন্য কোন কোন ফিল্ডগুলো মডেল দ্বারা ভরাট করা যাবে তা উল্লেখ করুন
     protected $fillable = [
         'user_id',
+        'ignorer_id',
     ];
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+    public function ignorer()
+    {
+        return $this->belongsTo(User::class, 'ignorer_id');
     }
 }

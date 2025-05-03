@@ -57,7 +57,10 @@ class UserController extends Controller
         $userId = $request->input('user_id');
 
         // Shortlist করার জন্য ডেটা সংরক্ষণ করুন
-        ShortlistedUser::create(['user_id' => $userId]);
+        ShortlistedUser::create([
+            'user_id' => $userId,
+            'shortlister_id' => Auth::id()
+        ]);
 
         return response()->json(['success' => true, 'message' => 'User shortlisted successfully.']);
     }
@@ -68,6 +71,7 @@ class UserController extends Controller
 
         $ignored = new IgnoredUser();
         $ignored->user_id = $userId;
+        $ignored->ignorer_id = Auth::id();
         $ignored->save();
 
         return response()->json(['success' => true, 'message' => 'User ignored successfully.']);
@@ -75,13 +79,13 @@ class UserController extends Controller
 
     public function shortlistView()
     {
-        $shortlisted = ShortlistedUser::with('user')->get();
+        $shortlisted = ShortlistedUser::with('user')->where('shortlister_id', Auth::id())->get();
         return view('user.shortlist', compact('shortlisted'));
     }
 
     public function ignoreListView()
     {
-        $ignored = IgnoredUser::with('user')->get();
+        $ignored = IgnoredUser::with('user')->where('ignorer_id', Auth::id())->get();
         return view('user.ignorelist', compact('ignored'));
     }
 }

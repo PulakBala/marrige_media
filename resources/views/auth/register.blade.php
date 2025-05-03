@@ -71,33 +71,33 @@
                         <div class="carousel-inner">
                             {{-- slide number 1  --}}
                             <div class="carousel-item active">
-                                <h5>This Profile is for</h5>
+                                <h5>এই প্রোফাইলটি কার জন্য</h5>
                                 <div class="profile-option">
                                     <input type="hidden" name="profile_type" id="profileType">
-                                    <div class="option" data-value="Myself">Myself</div>
-                                    <div class="option" data-value="My Son">My Son</div>
-                                    <div class="option" data-value="My Daughter">My Daughter</div>
-                                    <div class="option" data-value="My Brother">My Brother</div>
-                                    <div class="option" data-value="My Sister">My Sister</div>
-                                    <div class="option" data-value="My Friend">My Friend</div>
-                                    <div class="option" data-value="My Relative">My Relative</div>
+                                    <div class="option" data-value="Myself">নিজের জন্য</div>
+                                    <div class="option" data-value="My Son">আমার ছেলে</div>
+                                    <div class="option" data-value="My Daughter">আমার মেয়ে</div>
+                                    <div class="option" data-value="My Brother">আমার ভাই</div>
+                                    <div class="option" data-value="My Sister">আমার বোন</div>
+                                    <div class="option" data-value="My Friend">আমার বন্ধু</div>
+                                    <div class="option" data-value="My Relative">আমার আত্মীয়</div>
                                 </div>
 
-                                <p class="mt-3"><strong>Gender</strong></p>
+                                <p class="mt-3"><strong>লিঙ্গ</strong></p>
                                 <div class="gender-option">
                                     <input type="hidden" name="gender" id="gender">
-                                    <div class="option" data-value="Male">Male</div>
-                                    <div class="option" data-value="Female">Female</div>
+                                    <div class="option" data-value="Male">পুরুষ</div>
+                                    <div class="option" data-value="Female">নারী</div>
                                 </div>
                             </div>
 
                             {{-- slide number 2 --}}
                             <div class="carousel-item">
-                                <h5>Your Name</h5>
-                                <input type="text" name="first_name" class="form-control mb-4 p-2" placeholder="First Name">
-                                <input type="text" name="last_name" class="form-control mb-4 p-2" placeholder="Last Name">
+                                <h5>নাম</h5>
+                                <input type="text" name="first_name" class="form-control mb-4 p-2" placeholder="প্রথম  নাম">
+                                <input type="text" name="last_name" class="form-control mb-4 p-2" placeholder="লাস্ট নাম">
 
-                                <h5>Date of Birth</h5>
+                                <h5>জন্ম তারিখ</h5>
                                 <div class="d-flex gap-2">
                                     <input type="text" name="dob_day" class="form-control" placeholder="Day">
                                     <input type="text" name="dob_month" class="form-control" placeholder="Month">
@@ -107,31 +107,27 @@
 
                             {{-- slide number 3 --}}
                             <div class="carousel-item">
-                                <h5>Our Religion</h5>
+                                <h5>আমাদের ধর্ম</h5>
                                 <select name="religion" class="form-select mb-2 p-2" aria-label="Select an option">
-                                    <option selected>Select</option>
-                                    <option value="Muslim">Muslim</option>
+                                    <option selected>নির্বাচন করুন</option>
+                                    <option value="Muslim">মুসলিম</option>
 
                                 </select>
 
-                                <h5>Email ID</h5>
+                                <h5>ইমেইল আইডি</h5>
                                 <input type="email" name="email" class="form-control mb-4 p-2" placeholder="Enter your Email">
 
-                                <h5>Mobile No</h5>
+                                <h5>মোবাইল নম্বর </h5>
                                 <div class="d-flex mb-2 gap-2">
                                     <!-- Country Code Dropdown -->
                                     <select class="form-select p-2" name="country_code" aria-label="Country Code" id="countryCode" style="width: 120px">
                                         <option value="+88">+0 (BAD)</option>
-                                        <option value="+44">+44 (UK)</option>
-                                        <option value="+91">+91 (India)</option>
-                                        <option value="+61">+61 (Australia)</option>
-                                        <option value="+33">+33 (France)</option>
-                                        <option value="+81">+81 (Japan)</option>
+
                                         <!-- Add more countries and their codes as needed -->
                                     </select>
 
                                     <!-- Mobile Number Input -->
-                                    <input type="text" name="mobile_number" class="form-control" placeholder="Enter your mobile number" id="mobileNumber">
+                                    <input type="text" name="mobile_number" class="form-control" placeholder="আপনার মোবাইল নম্বর লিখুন" id="mobileNumber">
                                 </div>
 
                             </div>
@@ -141,11 +137,11 @@
                             <div class="carousel-item">
 
 
-                                <h5>Password</h5>
-                                <input type="password" name="password" class="form-control mb-4 p-2" placeholder="Enter your Password">
+                                <h5>পাসওয়ার্ড</h5>
+                                <input type="password" name="password" class="form-control mb-4 p-2" placeholder="আপনার পাসওয়ার্ড দিন">
 
-                                <h5>Confirm Password</h5>
-                                <input type="password" name="password_confirmation" class="form-control mb-4 p-2" placeholder="Confirm your Password">
+                                <h5>পাসওয়ার্ড নিশ্চিত করুন</h5>
+                                <input type="password" name="password_confirmation" class="form-control mb-4 p-2" placeholder="পাসওয়ার্ড নিশ্চিত করুন">
                             </div>
 
 

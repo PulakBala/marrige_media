@@ -100,3 +100,13 @@ Route::prefix('profile')->group(function () {
 
 //home page data filter
 Route::post('/search', [ProfileController::class, 'search'])->name('search.profiles');
+
+//privacy policy
+Route::view('/privacy-policy', 'security.privacy')->name('privacy');
+
+//terms and conditions
+Route::view('/terms-and-conditions', 'security.terms')->name('terms');
+
+//refund policy
+Route::view('/refund-policy', 'security.refund')->name('refund');
+

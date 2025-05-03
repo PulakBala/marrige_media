@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h3 class="mb-4 fw-bold">শর্টলিস্টকৃত ব্যবহারকারীদের তালিকা</h3>
+    <h3 class="mb-4 fw-bold" style="color: #2ebb55;">শর্টলিস্টকৃত ব্যবহারকারীদের তালিকা</h3>
 
     <div class="table-responsive shadow rounded">
         <table class="table table-striped table-bordered align-middle text-center">

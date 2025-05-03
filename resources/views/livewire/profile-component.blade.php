@@ -11,43 +11,43 @@
                         <div class="step-title">
                             @switch($i)
                                 @case(1)
-                                    General Info
+                                সাধারণ তথ্য
                                 @break
 
                                 @case(2)
-                                    Address
+                                ঠিকানা
                                 @break
 
                                 @case(3)
-                                    Educational Qualifications
+                                শিক্ষাগত যোগ্যতা
                                 @break
 
                                 @case(4)
-                                    Family Information
+                                পারিবারিক তথ্য
                                 @break
 
                                 @case(5)
-                                    Personal Info
+                                ব্যক্তিগত তথ্য
                                 @break
 
                                 @case(6)
-                                    Occupational Information
+                                পেশাগত তথ্য
                                 @break
 
                                 @case(7)
-                                    Marriage related information
+                                বিবাহ সম্পর্কিত তথ্য
                                 @break
 
                                 @case(8)
-                                    Expected Life partner
+                                প্রত্যাশিত জীবনসঙ্গী
                                 @break
 
                                 @case(9)
-                                    Pledge
+                                অঙ্গীকার
                                 @break
 
                                 @default
-                                    Contact {{ $i }}
+                                যোগাযোগ {{ $i }}
                             @endswitch
                         </div>
                     </div>
