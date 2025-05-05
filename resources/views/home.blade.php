@@ -103,9 +103,12 @@
                             </tr>
                         </table>
                         <div class="text-center mt-3 mb-3">
-                            <button type="button" class="btn btn-outline-dark px-4 rounded-pill fw-semibold" data-bs-toggle="modal" data-bs-target="#loginModal">
-                                বায়োডাটা বিস্তারিত
-                            </button>
+                            <a
+                                href="{{ route('user.details', $info->user_id) }}"
+                                class="btn btn-outline-dark px-4 rounded-pill fw-semibold text-decoration-none"
+                            >
+                                Biodata Details
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -167,9 +170,3 @@
 </script>
 
 @endsection
-
-
-
-
-
-{{-- bU.EcVT?YRA& --}}

@@ -35,7 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/all-users', [ProfileController::class, 'allUsers'])->name('all.users');
 
     // all users profile details data useing id for uniq users
-    Route::get('/user/{id?}', [ProfileController::class, 'user'])->name('user.details');
+    // Route::get('/user/{id?}', [ProfileController::class, 'user'])->name('user.details');
 
     // check package status for see contact information
     // Route::get('/check-package-status', [ProfileController::class, 'checkPackageStatus']);
@@ -109,4 +109,6 @@ Route::view('/terms-and-conditions', 'security.terms')->name('terms');
 
 //refund policy
 Route::view('/refund-policy', 'security.refund')->name('refund');
+
+Route::get('/user/{id?}', [ProfileController::class, 'user'])->name('user.details');
 

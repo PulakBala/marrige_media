@@ -398,11 +398,13 @@
 
                 <div class="text-center mt-5">
                     <button id="viewContactBtn" class="btn btn-outline-dark px-4 p-2 rounded-pill fw-semibold"
-                        onclick="viewContactInformation()">যোগাযোগের তথ্য দেখুন </button>
+                    onclick="viewContactInformation()">যোগাযোগের তথ্য দেখুন </button>
                     <p class="mt-3 " style="color: #2ebb55">যোগাযোগের তথ্য দেখার জন্য আপনাকে সর্বনিম্ন 1 টি কানেকশন থাকতে
                         হবে।</p>
-                </div>
+                    </div>
+                    @auth
 
+                    @if ($contact)
 
                 <table class="mt-5 w-100" id="contactInfo" data-contact-id="{{ $contact->id ?? '' }}"
                     style="display:none; ">
@@ -424,35 +426,42 @@
                     </tr>
                 </table>
             </div>
-
+            @endif
+            @endauth
         </div>
     </div>
 
     {{-- view hide contact information js code  --}}
     <script>
         function viewContactInformation() {
-            const contactId = document.getElementById('contactInfo').getAttribute('data-contact-id');
+            @guest
+                alert('দয়া করে আগে লগইন করুন।');
+                window.location.href = '{{ route('login') }}?redirect={{ urlencode(request()->fullUrl()) }}';
+                return;
+            @endguest
 
-            if (!contactId) {
-                alert('Contact ID cannot be null. Please ensure that there are contacts available.');
+            const contactTable = document.getElementById('contactInfo');
+            const contactId    = contactTable?.getAttribute('data-contact-id');
+
+            if (! contactId) {
+                alert('Contact তথ্য পাওয়া যায়নি।');
                 return;
             }
 
             axios.post('/check-package-status', {
-                    contact_id: contactId
-                })
-                .then(response => {
-                    if (response.data.success) {
-                        const contactTable = document.getElementById('contactInfo');
-                        contactTable.style.display = 'table';
-                        contactTable.classList.add('w-100');
-                    } else {
-                        alert(response.data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error("There was an error checking package status:", error);
-                });
+                contact_id: contactId
+            })
+            .then(response => {
+                if (response.data.success) {
+                    contactTable.style.display = 'table';
+                    contactTable.classList.add('w-100');
+                } else {
+                    alert(response.data.message);
+                }
+            })
+            .catch(error => {
+                console.error("Check package-status error:", error);
+            });
         }
     </script>
 

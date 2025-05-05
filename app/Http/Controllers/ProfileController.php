@@ -62,7 +62,11 @@ class ProfileController extends Controller
         $pledge = \App\Models\Pledge::where('user_id', $userId)->first();  // Fetch pledge information
 
         // Contact information fetch
-        $contact = \App\Models\Contact::where('user_id', $userId)->first();  // Fetch contact information
+        // $contact = \App\Models\Contact::where('user_id', $userId)->first();  // Fetch contact information
+        $contact = null;
+        if (auth()->check()) {
+            $contact = \App\Models\Contact::where('user_id', $userId)->first();
+        }
 
         // return view file proflie user
         return view('profile.user', compact('basicInformation', 'permanentAddress', 'presenttAddress', 'educationDetails', 'familyInformation', 'personalInformation', 'occupationInformation', 'marriageInformation', 'expectedPartner', 'pledge', 'contact'));  // Pass data to the view
@@ -71,7 +75,7 @@ class ProfileController extends Controller
     // my profile biodata  information submit form
     public function edit()
     {
-        return view('profile.edit');
+        return view('profi le.edit');
     }
 
     // allUsers function working for without users displaye  root page
